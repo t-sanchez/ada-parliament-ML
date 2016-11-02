@@ -23,8 +23,7 @@ If time allows, after establishing the topic of the object that is voted, we wil
 ### License
 The License of the data is available [here](https://www.parlament.ch/en/services/open-data-webservices). We can use it under some sensible restrictions (not alter it, indicate the date of the download, ...)
 ## Deliverables
-The final result will take the form of an online website presenting different interactive visualisations of the results we obtain. The website will mostly be developped by [this team](https://github.com/jmuth/parliament-viz.ch/blob/master/README.md), and we will provide them with more processed data. 
-
+The final result will take the form of an online website presenting different interactive visualisations of the results we obtain. The website will mostly be developped by [this team](https://github.com/jmuth/parliament-viz.ch) (Joachim Muth, Gael Lederrey and Jonas Racine), and we will provide them with more processed data. 
 ## Timeplan
 - **November 6th, 2016:** Start of the project
 - **November 13th, 2016:** Data scraping and parsing of a first usable dataset
