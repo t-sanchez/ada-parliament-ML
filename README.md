@@ -11,7 +11,8 @@ The motivation of this project is to use the free information of the [Swiss parl
 We will try to model the topics that are discussed at the Parilament, but more specifically will try to establish a voting profile of each political party, trying to predict their voting on a new subject that would be submitted to then.
 
 ## Data description
-The textual form of the data we will use is available [here](https://www.parlament.ch/en/ratsbetrieb/suche-amtliches-bulletin) : it contains all the bulletins of the Swiss parliament. However, we got access to an API to make the scraping easier, 
+The textual form of the data we will use is available [here](https://www.parlament.ch/en/ratsbetrieb/suche-amtliches-bulletin) : it contains all the bulletins of the Swiss parliament. However, we got access to an API to make the scraping easier, the metadata are available on [this page](https://ws.parlament.ch/odata.svc/$metadata).
+
 ## Feasibility and Risks
 ### Data scraping
 ### Topic modelling 
@@ -22,7 +23,7 @@ If time allows, after establishing the topic of the object that is voted, we wil
 ### License
 The License of the data is available [here](https://www.parlament.ch/en/services/open-data-webservices). We can use it under some sensible restrictions (not alter it, indicate the date of the download, ...)
 ## Deliverables
-The final result will take the form of an online website presenting different interactive visualisations of the results we obtain. The website will mostly be developped by this [team](https://github.com/jmuth/parliament-viz.ch/blob/master/README.md). 
+The final result will take the form of an online website presenting different interactive visualisations of the results we obtain. The website will mostly be developped by [this team](https://github.com/jmuth/parliament-viz.ch/blob/master/README.md), and we will provide them with more processed data. 
 
 ## Timeplan
 - **November 6th, 2016:** Start of the project
