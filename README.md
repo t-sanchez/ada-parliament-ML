@@ -19,6 +19,8 @@ The official bulletins do not contain any clear *topic* attribute. Our first tas
 ### Voting profile
 If time allows, after establishing the topic of the object that is voted, we will construct a voting profile for each of the members of the parliament, as well as the parties. We will then implemented an algorithm which will attempt to predict the outcome of vote on a given matter for each party.
 
+### License
+The License of the data is available [here](https://www.parlament.ch/en/services/open-data-webservices). We can use it under some sensible restrictions (not alter it, indicate the date of the download, ...)
 ## Deliverables
 The final result will take the form of an online website presenting different interactive visualisations of the results we obtain. The website will mostly be developped by this [team](https://github.com/jmuth/parliament-viz.ch/blob/master/README.md). 
 
