@@ -13,8 +13,29 @@ We will try to model the topics that are discussed at the Parilament, but more s
 ## Data description
 The textual form of the data we will use is available [here](https://www.parlament.ch/en/ratsbetrieb/suche-amtliches-bulletin) : it contains all the bulletins of the Swiss parliament. However, we got access to an API to make the scraping easier, the metadata are available on [this page](https://ws.parlament.ch/odata.svc/$metadata).
 
+The available data contain a set of votes, each on with following fields :
+### About the voting person :
+- Id
+- First name
+- Last name
+- Canton
+- Parliament group
+
+### About the voting subject :
+- Business title
+- Bill title
+
+### About the vote :
+- Decision
+- Vote end
+- Meaning of the 'Yes'
+- Meaning of the 'No'
+
+Note that some additional fields are also present but are either irrelevant in our study, or duplicating information from already existent fields.
+
 ## Feasibility and Risks
 ### Data scraping
+The original data on the website are in pdf format which are very hard to process. We asked to a certain Daniel Schweizer for more accesible data and he provided us a metadata containing all the data of interest. Then using the online tool PragmatiQa, we were able to recover the data in csv format.
 ### Topic modelling 
 The official bulletins do not contain any clear *topic* attribute. Our first task will be to establish the thematic of each object discussed at the parliament. To this end, we will use NLP tools. Note that we will need to establish as well how the object is presented, e.g. if voting yes to an article about immigration wants to encourage immigration in Switzerland of wants to restrict it. 
 ### Voting profile
