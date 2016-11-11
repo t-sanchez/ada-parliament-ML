@@ -42,9 +42,14 @@ Note that some additional fields are also present but are either irrelevant in o
 ## Feasibility and Risks
 ### Data scraping
 The original data on the website are in pdf format which are very hard to process. We asked to a certain Daniel Schweizer for more accesible data and he provided us a metadata containing all the data of interest. Then using the online tool (XOData)[http://pragmatiqa.com/xodata/#] from PragmatiQa, we are able to find the structure of the requests in order to write a python script that parses and formats the relevant fields, and then stores them into a csv file.
+
+The scraping is performed by the methods in the `scraping.ipynb` notebook.
+
 ### Topic modelling 
 The official bulletins do not contain any clear *topic* attribute. Our first task will be to establish the thematic of each object discussed at the parliament. To this end, we will use NLP tools. Note that we will need to establish as well how the object is presented, e.g. if voting yes to an article about immigration wants to encourage immigration in Switzerland of wants to restrict it. 
 To go into more depth, we use the Transcript class of the data from the parliament, which contains everything that is discussed during the sessions at the parliament. This gives us a consequent corpus of texts. After recovering them, we perform the topic modelling using the [Gensim](https://radimrehurek.com/gensim/index.html) library, using the [Latent Dirichlet Allocation (LDA) model](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)
+
+Our different implementations of topic modelling (currently with 2 different libraries) are written in the `nlp.ipynb` and `nlp_Gensim.ipynb` notebooks.
 
 ### Voting profile
 If time allows, after establishing the topic of the object that is voted, we will construct a voting profile for each of the members of the parliament, as well as the parties. We will then implemented an algorithm which will attempt to predict the outcome of vote on a given matter for each party.
