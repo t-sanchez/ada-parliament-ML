@@ -1,2 +1,3 @@
 *.csv
 datas
+.DS_Store
