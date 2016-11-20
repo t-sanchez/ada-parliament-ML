@@ -41,27 +41,30 @@ Note that some additional fields are also present but are either irrelevant in o
 
 ## Feasibility and Risks
 ### Data scraping
-The original data on the website are in pdf format which are very hard to process. We asked to a certain Daniel Schweizer for more accesible data and he provided us a metadata containing all the data of interest. Then using the online tool (XOData)[http://pragmatiqa.com/xodata/#] from PragmatiQa, we are able to find the structure of the requests in order to write a python script that parses and formats the relevant fields, and then stores them into a csv file.
+The original data on the website are in pdf format which are very hard to process. We asked to a certain Daniel Schweizer for more accesible data and he provided us a metadata containing all the data of interest. Then using the online tool [XOData](http://pragmatiqa.com/xodata/#) from PragmatiQa, we are able to find the structure of the requests in order to write a python script that parses and formats the relevant fields, and then stores them into a csv file.
 
 The scraping is performed by the methods in the `scraping.ipynb` notebook.
 
 ### Topic modelling 
-The official bulletins do not contain any clear *topic* attribute. Our first task will be to establish the thematic of each object discussed at the parliament. To this end, we will use NLP tools. Note that we will need to establish as well how the object is presented, e.g. if voting yes to an article about immigration wants to encourage immigration in Switzerland of wants to restrict it. 
-To go into more depth, we use the Transcript class of the data from the parliament, which contains everything that is discussed during the sessions at the parliament. This gives us a consequent corpus of texts. After recovering them, we perform the topic modelling using the [Gensim](https://radimrehurek.com/gensim/index.html) library, using the [Latent Dirichlet Allocation (LDA) model](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation)
+The official bulletins do not contain any clear *topic* attribute. Our first task will be to establish the thematic of each object discussed at the parliament. To this end, we will use NLP tools. Note that we will need to establish as well how the object is presented, e.g. if voting yes to an article about immigration wants to encourage immigration in Switzerland of wants to restrict it. We will work from the *Transcript* field of the data we scraped from the parliament website, which contains the discussion around the vote.
+To go into more depth, we use the Transcript class of the data from the parliament, which contains everything that is discussed during the sessions at the parliament. This gives us a consequent corpus of texts. After recovering them, we perform the topic modelling using the [Gensim](https://radimrehurek.com/gensim/index.html) library, using the [Latent Dirichlet Allocation (LDA) model](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation).
 
-Our different implementations of topic modelling (currently with 2 different libraries) are written in the `nlp.ipynb` and `nlp_Gensim.ipynb` notebooks.
+Our different implementations of topic modelling (currently with 2 different libraries) are written in the `nlp.ipynb` and `nlp_Gensim.ipynb` notebooks. 
+
+### Formatting the data for the machine learning 
+After having successfully extracted the topic from the vote, we need to format our data into a usable dataset that we will use with our machine learning algorithm. It will associate each useful field of the voting data to the topics to which it is the closest. 
 
 ### Voting profile
-If time allows, after establishing the topic of the object that is voted, we will construct a voting profile for each of the members of the parliament, as well as the parties. We will then implemented an algorithm which will attempt to predict the outcome of vote on a given matter for each party.
+After establishing the topic of the object that is voted and formatting it into a usable dataset, we will construct a voting profile for each of the members of the parliament, as well as the parties. We will then implemented an algorithm which will attempt to predict the outcome of vote on a given matter for each party.
 
 ### License
 The License of the data is available [here](https://www.parlament.ch/en/services/open-data-webservices). We can use it under some sensible restrictions (not alter it, indicate the date of the download, ...)
 ## Deliverables
 The final result will take the form of an online website presenting different interactive visualisations of the results we obtain. The website will mostly be developped by [this team](https://github.com/jmuth/parliament-viz.ch) (Joachim Muth, Gael Lederrey and Jonas Racine), and we will provide them with more processed data. 
 ## Timeplan
-- **November 6th, 2016:** Start of the project
-- **November 13th, 2016:** Data scraping and parsing of a first usable dataset
-- **December 4th, 2016:** Extraction of the topic of the objects, determining if it is positive or not. 
+- **November 6th, 2016:** Start of the project -> *done*
+- **November 13th, 2016:** Data scraping and parsing of a first usable dataset -> *done*
+- **December 4th, 2016:** Extraction of the topic of the objects, determining if it is positive or not -> *in progress*
 - **December 18th, 2016:** Voting profile of each party
 - **Mid-December 2016:** Checkpoint
 - **January 1st, 2017:** Extension of the database and refinement of the model
