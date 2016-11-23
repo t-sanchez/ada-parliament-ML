@@ -53,6 +53,8 @@ Our latest working implementation of Natural Language Processing with our datase
 ### Formatting the data for the machine learning 
 After having successfully extracted the topic from the vote, we need to format our data into a usable dataset that we will use with our machine learning algorithm. It will associate each useful field of the voting data to the topics to which it is the closest. 
 
+This is also done in the `02-NLP` folder, where we start to apply what we found to the title of the laws which are voted at the Parliament, namely the *BillTitle* and the *BusinessTitle* attributes of the *Vote* field. We will then use this multiclass classification (percentage of belonging to each class from each of the entries) to perform supervised machine learning.
+
 ### Voting profile
 After establishing the topic of the object that is voted and formatting it into a usable dataset, we will construct a voting profile for each of the members of the parliament, as well as the parties. We will then implemented an algorithm which will attempt to predict the outcome of vote on a given matter for each party.
 
