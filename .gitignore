@@ -1,5 +1,10 @@
 *.csv
-datas
+datas/nlp_results
+datas/scrap
+datas/Transcript
+datas/Transcript\ copy
+datas/treated_data
+datas/Voting
 .DS_Store
 .ipynb_checkpoints
 __pycache__
