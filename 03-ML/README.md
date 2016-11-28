@@ -10,8 +10,11 @@ We want to predict the *Decision* taken by the person :
 | Yes  | No    | Abstention | Excused | Did not participate | The president of the session does not vote|
 
 
-These are all the options possible, we will restrain ourselves to predicting the cases **1**, **2** and **3**.
+These are all the options possible, we will restrain ourselves to predicting the cases **1**, **2** and **3** (first, we consider only two classes, the **yes** and the **no** cases)
 
 The question we have to tackle now is the algorithm that would be best suited for this problem. What we want to do is, given the probability to belong of a topic of a vote, we want to predict what each person/party will vote. We will train our algorithm on each of the deputee to see, given a combination of probabilities of each topic, what he will predict. This might not work very well, due to the fact of considering only one user and also due to the fact that even if we know that a votation is talking about a topic, it might be in a *positive* or *negative* fashion, which we could try to determine.
 
 We could also try to train a person on what he voted, and in a minor way, what his party voted.
+
+The file `01-ML.ipynb` implements the full prediction pipeline for one deputee, following the exercise 4 that we did during the course. We load the DataFrame, format it, then extract one deputee and see whether we're successfully able to predict the outcome of his voting from the topics we're given. 
+
