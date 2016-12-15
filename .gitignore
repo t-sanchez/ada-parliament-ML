@@ -5,6 +5,7 @@ datas/Transcript
 datas/Transcript\ copy
 datas/treated_data
 datas/Voting
+04-Analysis/*.json
 .DS_Store
 .ipynb_checkpoints
 __pycache__
