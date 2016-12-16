@@ -55,8 +55,18 @@ After having successfully extracted the topic from the vote, we need to format o
 
 This is also done in the `02-NLP` folder, where we start to apply what we found to the title of the laws which are voted at the Parliament, namely the *BillTitle* and the *BusinessTitle* attributes of the *Vote* field. We will then use this multiclass classification (percentage of belonging to each class from each of the entries) to perform supervised machine learning.
 
+### Sentiment Analysis
+
+In addition to Topic Modelling, and in order to be able to more precisely understand a given *BillTitle* or *BusinessTitle*, we also perform Sentiment Analysis, in order to find whether a Topic is mentionned positively or negatively. Ideally, we would like to find whether a law which is votes is pro or against a certain topic. What we did is described in the `02.5-Sentiment` folder. 
+
+### Machine Learning
+Having the results from both Topic Modelling and Sentiment Analysis, we perform a Machine Learning task, trying to predict what a certain deputee will vote on a given topic, using the informations we previously obtained. The few trials we did with different approaches, detailed in the `03-ML` were quite inconclusive, and we hence shifted to another task : simply establishing a voting profile, which is more of a Data Analysis task, instead of predicting the future votes.
+
 ### Voting profile
-After establishing the topic of the object that is voted and formatting it into a usable dataset, we will construct a voting profile for each of the members of the parliament, as well as the parties. We will then implemented an algorithm which will attempt to predict the outcome of vote on a given matter for each party.
+Described in the `04-VotingProfile` folder, we perform some Exploratory Data Analysis, trying to extract useful information from the *Voting* results, along with the Topic we modelled.
+
+### Visualization
+Using the d3.js framework, we work on visualising our Data. The details are in the `05-Viz` folder.
 
 ### License
 The License of the data is available [here](https://www.parlament.ch/en/services/open-data-webservices). We can use it under some sensible restrictions (not alter it, indicate the date of the download, ...)
@@ -65,8 +75,8 @@ The final result will take the form of an online website presenting different in
 ## Timeplan
 - **November 6th, 2016:** Start of the project -> *done*
 - **November 13th, 2016:** Data scraping and parsing of a first usable dataset -> *done*
-- **December 4th, 2016:** Extraction of the topic of the objects, determining if it is positive or not -> *in progress*
-- **December 18th, 2016:** Voting profile of each party
+- **December 4th, 2016:** Extraction of the topic of the objects, determining if it is positive or not; machine learning -> *done, machine learning inconclusive*
+- **December 18th, 2016:** Voting profile of each party/deputee 
 - **Mid-December 2016:** Checkpoint
 - **January 1st, 2017:** Extension of the database and refinement of the model
 - **January 31th, 2017:** Final deadline
