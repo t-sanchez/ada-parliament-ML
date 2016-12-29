@@ -63,7 +63,9 @@ In addition to Topic Modelling, and in order to be able to more precisely unders
 Having the results from both Topic Modelling and Sentiment Analysis, we perform a Machine Learning task, trying to predict what a certain deputee will vote on a given topic, using the informations we previously obtained. The few trials we did with different approaches, detailed in the `03-ML` were quite inconclusive, and we hence shifted to another task : simply establishing a voting profile, which is more of a Data Analysis task, instead of predicting the future votes.
 
 ### Voting profile
-Described in the `04-VotingProfile` folder, we perform some Exploratory Data Analysis, trying to extract useful information from the *Voting* results, along with the Topic we modelled.
+Described in the `04b-VotingProfile` folder, we perform some Exploratory Data Analysis, trying to extract useful information from the *Voting* results, along with the Topic we modelled. We aim at formatting the data in a useful manner to display interactively the votes at different levels of aggregation. 
+
+The idea we want to follow is going from a very general overview of the profile of a person towards what his vote was on each of the votes at the parliament, in a useful and clear manner. This requires first to format the data in a good way for this purpose and then developping visualisation tools.
 
 ### Visualization
 Using the d3.js framework, we work on visualising our Data. The details are in the `05-Viz` folder.
@@ -76,7 +78,7 @@ The final result will take the form of an online website presenting different in
 - **November 6th, 2016:** Start of the project -> *done*
 - **November 13th, 2016:** Data scraping and parsing of a first usable dataset -> *done*
 - **December 4th, 2016:** Extraction of the topic of the objects, determining if it is positive or not; machine learning -> *done, machine learning inconclusive*
-- **December 18th, 2016:** Voting profile of each party/deputee 
+- **December 18th, 2016:** Voting profile of each party/deputee -> *In progress (more specifically aimed towards visualising the data now, the raw ones are available)* 
 - **Mid-December 2016:** Checkpoint
-- **January 1st, 2017:** Extension of the database and refinement of the model
+- **January 23st, 2017:** Extension of the database and visualisation of the voting profile of each deputee.
 - **January 31th, 2017:** Final deadline
