@@ -7,10 +7,10 @@ Using the data from the `voting\_with\_topics.csv` file we obtained with the NLP
 
 ## 2. PersonAnalysis.ipynb
 
-Using the raw data from the `Vote` and `Voting` folders of `scrap`, we aggregate the information at different levels. First of all, we simply count for each person for each session what were his votes (yes/no/abstention/absent/president) and prepare the data for the visualisation with d3.js.
+Using the raw data from the `Vote` and `Voting` folders of `scrap`, we aggregate the information at different levels. First of all, we simply count for each person for each session what were his votes (yes/no/abstention/absent/excused/president) and prepare the data for the visualisation with d3.js (this is the most aggregated level we will use).
 
-Secondly, we want to take the data for each deputee and export it, in order to get the results that each person gave to each vote.
+Secondly, we want to take the data for each deputee and export it, in order to get the results that each person gave to each vote (this is the most detailled view one can get for a person).
 
-Finally, we will also group our data by votes, in order to follow how a full law was voted throughout the different chambers.
+Finally, we will also group our data by votes, in order to follow how a full law was voted throughout the different chambers (N.B. At the moment, we haven't found a field that gave whether a law was accepted without going through the whole `Voting` file. If there are none, we should create a DataFrame which includes whether each law was accepted).
 
 
