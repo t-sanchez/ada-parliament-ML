@@ -5,7 +5,7 @@ Starting from the data we processed with the NLP, we have access to a dataset wi
 
 We want to predict the *Decision* taken by the person : 
 
-|**1** | **2** | **3**      | **4**   | **5**               |                **7**                      |
+|**1** | **2** | **3**      | **6**   | **5**               |                **7**                      |
 |------|-------|------------|---------|---------------------|-------------------------------------------|
 | Yes  | No    | Abstention | Excused | Did not participate | The president of the session does not vote|
 
