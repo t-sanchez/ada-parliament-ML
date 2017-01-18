@@ -17,32 +17,32 @@ The textual form of the data we will use is available [here](https://www.parlame
 
 There are different available data files, and we list below some important fields that are contained in those.
 ### About each of the deputee voting:
-Contains        | Field Name
-------------------------------------------------
- ID             | `ID`
-Name            | `FirstName`, `LastName`
-Canton          | `Canton`, `CantonID`
-Political Party | `ParlGroupCode`, `ParlGroupName`
+| Contains        | Field Name                      |
+|-----------------|---------------------------------|
+| ID              | `ID`                            |
+| Name            | `FirstName`, `LastName`         |
+| Canton          | `Canton`, `CantonID`            |
+| Political Party | `ParlGroupCode`, `ParlGroupName`|
 
 ### About the votes:
-Contains                               | Field Name
---------------------------------------------------------------------------
-Law (Bill)                             | `BillTitle`
-Business (Subject Treated)             | `BusinessTitle`, `BusinessNumber`
-Aspect of the law on which the vote is | `Subject`
-Meaning of the 'Yes'/'No' vote         | `MeaningYes`, `MeaningNo`
-Decision of the deputee                | `Decision`, `DecisionText`
-Time at which the vote ended           | `VoteEnd`
+| Contains                               | Field Name                        |
+|----------------------------------------|-----------------------------------|
+| Law (Bill)                             | `BillTitle`                       |
+| Business (Subject Treated)             | `BusinessTitle`, `BusinessNumber` |
+| Aspect of the law on which the vote is | `Subject`                         |
+| Meaning of the 'Yes'/'No' vote         | `MeaningYes`, `MeaningNo`         |
+| Decision of the deputee                | `Decision`, `DecisionText`        |
+| Time at which the vote ended           | `VoteEnd`                         |
 
 
 ### About the discussion around the vote (from the transcripts):
-Contains                               | Field Name
---------------------------------------------------------------------------
-Name of the speaker                    | `SpeakerFullName`
-Language in which he spoke             | `LanguageOfText`
-Time at which he spoke                 | `Start`
-Content of what he said                | `Text`
-Vote to which it is related            | `VoteId`
+| Contains                               | Field Name          |            
+|----------------------------------------|---------------------|
+| Name of the speaker                    | `SpeakerFullName`   |
+| Language in which he spoke             | `LanguageOfText`    |
+| Time at which he spoke                 | `Start`             |
+| Content of what he said                | `Text`              |
+| Vote to which it is related            | `VoteId`            |
 
 Note that some additional fields are also present but are either irrelevant in our study, or duplicating information from already existent fields.
 
@@ -57,6 +57,9 @@ This was the first aim in our project, but ended up not being very accurate (mor
 
 ### Visualisation of the votes
 The main challenge here is to provide a visualisation which is simple to understand, while not relying on too many of our assumptions or computations. We want to present the rawest data possible, as each of the assumption we take adds a bias to the visualisation at the output. This is why the largest effort of this part is put in thinking on how to present the most faithfully the available data.
+
+### License
+The License of the data is available [here](https://www.parlament.ch/en/services/open-data-webservices). We can use it under some sensible restrictions (not alter it, indicate the date of the download, ...)
 
 ## Description of the results
 ### Data scraping
@@ -94,8 +97,6 @@ The second main point of view would be to establish a visualisation for how a la
 ### Visualization
 Using the d3.js framework, we work on visualising our Data. The details are in the `05-Viz` folder.
 
-### License
-The License of the data is available [here](https://www.parlament.ch/en/services/open-data-webservices). We can use it under some sensible restrictions (not alter it, indicate the date of the download, ...)
 ## Deliverables
 The final result will take the form of an online website presenting different interactive visualisations of the results we obtain. The website will mostly be developped by [this team](https://github.com/jmuth/parliament-viz.ch) (Joachim Muth, Gael Lederrey and Jonas Racine), and we will provide them with more processed data. 
 ## Timeplan
