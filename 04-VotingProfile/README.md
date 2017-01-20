@@ -1,4 +1,5 @@
-This folder aims at analysing the voting profiles of each people. The main goal is to detect the political partiies from the votes.
+#04 - Voting Profile
+This folder aims at analysing the voting profiles of each people. The main goal is to detect the political parties from the votes.
 
 ## 1. TopicAnalysis.ipynb
 We perform some analysis on votation based on topic modelling results, e.g. topic evolution over time as well as statistical tests to see whether some votations about some topics are more likely to be accepted than others.

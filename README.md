@@ -1,5 +1,6 @@
-# ada-parliament-ML
-(ADA - CS 401)
+# Swiss Parliament Voting Visualisation
+## Applied Data Analysis Project 
+`ada-parliament-ML` is the repository for the Applied Data Analysis course (ADA - CS 401) from EPFL, for the team composed with *Martin Barry*, *Paul Rolland* and *Thomas Sanchez*. This specifically contains everything related to the team project that has to be carried on.
 
 ## Abstract
 The motivation of this project is to use the free information of the [Swiss parliament](https://www.parlament.ch/en/services/freedom-of-information-act), that are available from the *Freedom of Information Act* :
@@ -8,15 +9,15 @@ The motivation of this project is to use the free information of the [Swiss parl
 > purpose, organisation and activities of the federal administration, while guaranteeing access to official documents produced 
 > after 1 July 2006. 
 
-We will try to model the topics that are discussed at the Parilament, but more specifically will try to establish a voting profile of each political party, trying to *predict their votes* on a new subject that would be submitted to then. Moreover, we attempt at creating a simple and interactive visualisation of the votes that take place at the parliament, having *visualisation* about :
-- A single law and how the deputies voted on it.
-- A single deputee and how he voted on the laws.
+We will try to model the topics that are discussed at the Parilament, but more specifically will try to establish a voting profile of each political party, trying to *predict their votes* on a new subject that would be submitted to then. Moreover, we attempt at creating a simple and interactive *visualisation* of the votes that take place at the parliament, mainly following two approaches:
+- Consider a single law, and see how all the deputies voted on it.
+- Consider a single deputee, and see how he voted on the laws.
 
 ## Data description
-The textual form of the data we will use is available [here](https://www.parlament.ch/en/ratsbetrieb/suche-amtliches-bulletin) : it contains all the bulletins of the Swiss parliament. However, we got access to an API to make the scraping easier, the metadata are available on [this page](https://ws.parlament.ch/odata.svc/$metadata).
+The textual form of the data we will use is available [here](https://www.parlament.ch/en/ratsbetrieb/suche-amtliches-bulletin): it contains all the bulletins of the Swiss parliament. However, we got access to an API to make the scraping easier, the metadata are available on [this page](https://ws.parlament.ch/odata.svc/$metadata).
 
-There are different available data files, and we list below some important fields that are contained in those.
-### About each of the deputee voting:
+There are different data files at our disposal, and we list below some important fields that are contained in those, so the reader can get an idea on the quantity of available data (Note that this list is not exhaustive).
+### About each of the deputies voting:
 | Contains        | Field Name                      |
 |-----------------|---------------------------------|
 | ID              | `ID`                            |
@@ -36,7 +37,7 @@ There are different available data files, and we list below some important field
 
 
 ### About the discussion around the vote (from the transcripts):
-| Contains                               | Field Name          |            
+| Contains                               | Field Name          |
 |----------------------------------------|---------------------|
 | Name of the speaker                    | `SpeakerFullName`   |
 | Language in which he spoke             | `LanguageOfText`    |
@@ -44,53 +45,51 @@ There are different available data files, and we list below some important field
 | Content of what he said                | `Text`              |
 | Vote to which it is related            | `VoteId`            |
 
-Note that some additional fields are also present but are either irrelevant in our study, or duplicating information from already existent fields.
-
 ## Feasibility and Risks
 ### Data scraping
-The original data on the website are in pdf format which are very hard to process. We asked to a certain Daniel Schweizer for more accesible data and he provided us a metadata to access all the data of interest. Then using the online tool [XOData](http://pragmatiqa.com/xodata/#) from PragmatiQa, we are able to find the structure of the requests in order to write a python script that parses and formats the relevant fields, and then stores them into a csv file.
+Te most publicly available data on the Swiss Parliament website were presented in a PDF format, which makes it harder to process (one such example can be found on [this page](https://www.parlament.ch/en/ratsbetrieb/amtliches-bulletin/amtliches-bulletin-die-verhandlungen?SubjectId=38398)). We then contacted the Swiss Parliament and a certain Daniel Schweizer provided us with the metadata file, which enabled us to get access to the informations we needed. Then, using the online tool [XOData](http://pragmatiqa.com/xodata/#) from PragmatiQa, we are able to find the structure of the requests, in order to write a python script that parses and formats the relevant fields, and then stores them into csv files.
 
-The scraping is performed by the methods in the `01-Scraping` folder, which contains 3 notebooks.
+This step is more exhaustively described in the `01-Scraping` folder, which contains everything related to the scraping of the Parliament website.
 
 ### Voting prediction
-This was the first aim in our project, but ended up not being very accurate (more on it in the `03-ML` folder). Indeed, this was resting on first the Natural Language Processing to assign to each `BillTitle` the correct field it was about, but this is not totally correct. Then, we needed a sentiment analysis to express whether a `BillTitle` was presented positively (e.g. *For a minimal salary*, or negatively *Against a minimal salary*), plus a way to rank the laws based on the topic they were containing as well as whether the formulation is positive and negative. This made the prediction rely on too many layers of computations and subjectivity, which made the prediction complicated
+The first aim of our project was to see whether making a voting prediction from the discussions that happen in the chambers (the transcripts) and the previous votes of each deputee was possible. We arrived to the conclusion that our simplistic approach was not sufficient to accurately predict what a deputee would most likely vote on a future law. We will detail further the approach we took to try solving this problem and why it did not work very well. 
+
 
 ### Visualisation of the votes
-The main challenge here is to provide a visualisation which is simple to understand, while not relying on too many of our assumptions or computations. We want to present the rawest data possible, as each of the assumption we take adds a bias to the visualisation at the output. This is why the largest effort of this part is put in thinking on how to present the most faithfully the available data.
+The part of of the project on the voting prediction being very inconclusive, that is why we shifted towards a visualisation of the votes that happen in the chambers. Indeed, this is very feasible from the data we have, and the only visualisation that we found online relating to the visualisation of the votes on the national council, called *[Qui a voté comment au conseil national](https://www.parlament.ch/fr/ratsbetrieb/abstimmungen/qui-a-vot-comment-au-conseil-national)* (In English : *Who voted how at the National Council*), is very complete but does not allow for a quick visualisation of all the available data on a deputee.
+
+The main challenge here is to provide a visualisation which is simple to understand, while not relying on too many of our assumptions or computations, as each of those introduce a bias due to our understanding of politics. This is why we must present the rawest data possible, while still making them useful to the people who have more expertise in political sciences, and hence the visualisation must represent the data as faithfully as possible.
 
 ### License
-The License of the data is available [here](https://www.parlament.ch/en/services/open-data-webservices). We can use it under some sensible restrictions (not alter it, indicate the date of the download, ...)
+The License of the data is available [here](https://www.parlament.ch/en/services/open-data-webservices). We can use it under some sensible restrictions (not alter it, indicate the date of the download, ...). 
 
 ## Description of the results
 ### Data scraping
-The original data on the website are in pdf format which are very hard to process. We asked to a certain Daniel Schweizer for more accesible data and he provided us a metadata to access all the data of interest. Then using the online tool [XOData](http://pragmatiqa.com/xodata/#) from PragmatiQa, we are able to find the structure of the requests in order to write a python script that parses and formats the relevant fields, and then stores them into a csv file.
+Described more exhaustively in the the `01-Scraping` folder, this first fundamental step retrieves all the needed data from the Parliament website, formats it into `.csv` files and saves them into the `datas` folder. This step allows already for some preprocessing of the data, by focusing on the fields that are most relevant to our analysis. As the quantity of data available is quite large and goes on a wide range of topics, simply scraping everything would be complicated and yield to a lot of useless data.
 
-The scraping is performed by the methods in the `01-Scraping` folder, which contains 3 notebooks.
 
-### Topic modelling 
-The official bulletins do not contain any clear *topic* attribute. Our first task will be to establish the thematic of each object discussed at the parliament. To this end, we will use NLP tools. Note that we will need to establish as well how the object is presented, e.g. if voting yes to an article about immigration wants to encourage immigration in Switzerland of wants to restrict it. We will work from the *Transcript* field of the data we scraped from the parliament website, which contains the discussion around the vote.
-To go into more depth, we use the Transcript class of the data from the parliament, which contains everything that is discussed during the sessions at the parliament. This gives us a consequent corpus of texts. After recovering them, we perform the topic modelling using the [Gensim](https://radimrehurek.com/gensim/index.html) library, using the [Latent Dirichlet Allocation (LDA) model](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation).
+### Topic modelling
+After having scraped the data we needed from the Parliament website, we will focus on our primary task: establishing the thematic of each discussion that happens at the parliament and of each vote that taken. It would be too simple to have a clear *topic* attribute in the data, so we will need to use *Natural Language Processing* tools to attempt at making a clear topic modelling. We will train our model on the `Text` field of the transcripts, which contains all the discussion that take place in the chambers. This is done through the [Gensim](https://radimrehurek.com/gensim/index.html) library, which is using the [Latent Dirichlet Allocation (LDA) model](https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation). 
 
-Our latest working implementation of Natural Language Processing with our dataset is in the `02-NLP` folder.
+Moreover, after having successfully extracted the topic from the vote, we need to format our data into a usable dataset that we will use with a machine learning algorithm. Using our trained model, we will associate each `BillTitle` with its closest topics: there will be a percentage associated to each topic that we have found in the first part, and the law should be talking about the topics in which it has the highest percentage. This quantifies the strings into numbers, which make the data usable into a machine learning algorithm
 
-### Formatting the data for the machine learning 
-After having successfully extracted the topic from the vote, we need to format our data into a usable dataset that we will use with our machine learning algorithm. It will associate each useful field of the voting data to the topics to which it is the closest. 
-
-This is also done in the `02-NLP` folder, where we start to apply what we found to the title of the laws which are voted at the Parliament, namely the *BillTitle* and the *BusinessTitle* attributes of the *Vote* field. We will then use this multiclass classification (percentage of belonging to each class from each of the entries) to perform supervised machine learning.
+This work is done in the `02-NLP` folder. 
 
 ### Sentiment Analysis
-
-In addition to Topic Modelling, and in order to be able to more precisely understand a given *BillTitle* or *BusinessTitle*, we also perform Sentiment Analysis, in order to find whether a Topic is mentionned positively or negatively. Ideally, we would like to find whether a law which is votes is pro or against a certain topic. What we did is described in the `02.5-Sentiment` folder. 
+But the *Topic Modelling* part is not sufficient to accurately predict the outcome of the vote. Indeed, we will need to know the *polarity* of the law, i.e. whether an article about immigration would encourage it, or if it aims a restraining immigration. This polarity ranges between -1 and +1 (-1 meaning a very negative text, +1 a very positive one). This process is called *Sentiment Analysis*, and allows us to extract even more information from the small text of law that we are given. Ideally, the outcome of this section would allow us to find whether a law is against, or for a given topic. What we did is described in the `02.5-Sentiment` folder. 
 
 ### Machine Learning
-Having the results from both Topic Modelling and Sentiment Analysis, we perform a Machine Learning task, trying to predict what a certain deputee will vote on a given topic, using the informations we previously obtained. The few trials we did with different approaches, detailed in the `03-ML` were quite inconclusive, and we hence shifted to another task: simply establishing a voting profile, which is more of a Data Analysis task, instead of predicting the future votes. Moreover, we developped the visualisation of those voting profiles.
+Having the results from both Topic Modelling and Sentiment Analysis, we perform a Machine Learning task, trying to predict what a certain deputee will vote on a given topic, using the informations we previously obtained. The few trials we did with different approaches, detailed in the `03-ML` were quite inconclusive, and we hence shifted to another task: simply establishing a voting profile, which is more of a Data Analysis task, instead of predicting the future votes. Moreover, we created a visualisation of those voting profiles, allowing us to see quickly how a deputee votes.
+
+The fact that this part was quite unsuccessful can be explained because of the intrinsic complexity of the computations that a text of law must go through to become a usable data for a machine learning task. Indeed, first, we need to correctly extract his topic, which is an unsupervised learning task: we set the number of topics that there should be, the algorithm outputs some clusters, and we name the topic from the words contained in the clusters. This is already a first layer which depends on our interpretation of the results. Secondly, the sentiment analysis has to accurately model whether a text is for or against a given topic. Otherwise, even having the topic available, the prediction would become random, as there should be no correlation between a topic and the vote that is made by someone. As we weren't able to correctly extract the informations from each of the Bills, we weren't either able to predict the outcomes of the votes on other laws, as the modelling we made of the text of law was not sufficiently good.
 
 ### Voting profile
-Described in the `04-VotingProfile` folder, we perform some Exploratory Data Analysis, trying to extract useful information from the *Voting* results, along with the Topic we modelled. We aim at formatting the data in a useful manner to display interactively the votes at different levels of aggregation. 
+Moving away from Machine Learning, we performed some Exploratory Data Analysis, trying to extract useful information from the *Voting* results, along with the Topic we modelled, as we found them to be quite accurate in themselves (only the combination between topics and polarity was really inconclusive). This step is described in the `04-VotingProfile` folder. Using the most useful facts we find from analysing the data, we found the data we would like to visualise, which will be the topic of the next section.
 
-The idea we want to follow is going from a very general overview of the profile of a person towards what his vote was on each of the votes at the parliament, in a useful and clear manner. This requires first to format the data in a good way for this purpose and then developping visualisation tools. This contains, not exhaustively:
+The idea we want to follow is going from a very general overview of the profile of a person towards how he votes at the Parliament, in a useful and clear manner. This requires first to format the data in a good way, and then, developping visualisation tools. This visualisation will show, not exhaustively:
 - How the deputee voted at each vote.
 - Whether he voted the same way his party did.
+- How often is he present/absent.
 
 The second main point of view would be to establish a visualisation for how a law was voted throughout time, the different modifications it underwent, the shifts between the chambers, ... This is also done in the same folder.
 
@@ -105,8 +104,8 @@ The final result will take the form of an online website presenting different in
 - **December 4th, 2016:** Extraction of the topic of the objects, determining if it is positive or not; machine learning -> *done, machine learning inconclusive*
 - **December 18th, 2016:** Voting profile of each party/deputee -> *done*
 - **Mid-December 2016:** Checkpoint -> *done*
-- [ADDED] Visualisation of the voting profile of each deputee, as well as each law
-- [ADDED] Interactive and interesting way of visualising the connections between the member of the parliament and the laws (using some of the NLP we previously did).
-- [ADDED] Aggregation at a *Session* rate of the votes of one deputee, to get an overall visualisation of how he voted over time. 
+- **[ADDED]** Visualisation of the voting profile of each deputee, as well as each law
+- **[ADDED]** Interactive and interesting way of visualising the connections between the member of the parliament and the laws (using some of the NLP we previously did).
+- **[ADDED]** Aggregation at a *Session* rate of the votes of one deputee, to get an overall visualisation of how he voted over time. 
 - **January 23st, 2017:** Extension of the database and visualisation of the voting profile of each deputee.
 - **January 31th, 2017:** Final deadline
