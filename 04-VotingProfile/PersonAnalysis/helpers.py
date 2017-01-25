@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import glob
 import os
 
@@ -7,7 +8,7 @@ def load_vote_df():
     print('Entries in the DataFrame',vote_df.shape)
     vote_df = vote_df[['VoteEnd','BillTitle','BusinessTitle','Subject','MeaningNo','MeaningYes','BusinessShortNumber','ID','IdLegislativePeriod','IdSession',
                   ]]
-    vote_df['VoteEnd'] = vote_df['VoteEnd'].apply(pd.to_datetime)
+    vote_df['VoteEnd'] = vote_df['VoteEnd'].apply(pd.to_datetime).apply(lambda x: x.date())
     vote_df.sort_values('VoteEnd',ascending=True)
     return vote_df
 
@@ -30,6 +31,8 @@ def load_voting():
 
     print('Entries in the DataFrame',voting_df.shape)
     
+    voting_df.reset_index(inplace=True)
+    
         # 2. Update the names of the parties
     parties_name_dict = {'Groupe écologiste':'Parti écologiste suisse (Les Verts)', 'Groupe socialiste':'Parti socialiste', 
         "Groupe vert'libéral":'Parti vert-libéral', 'Groupe radical-démocratique':'Parti libéral-radical',
@@ -43,7 +46,7 @@ def load_voting():
     
     # 3. Process some supplementary fields
     voting_df.insert(1,'Name', voting_df['FirstName'] + ' ' + voting_df['LastName'])
-    voting_df['VoteEnd'] = voting_df['VoteEnd'].apply(pd.to_datetime)
+    voting_df['VoteEnd'] = voting_df['VoteEnd'].apply(pd.to_datetime).apply(lambda x: x.date())
     
     # 4. Keep only the relevant fields    
     voting_df = voting_df[['Name','BillTitle','BusinessTitle', 'Decision', 'DecisionText','BusinessShortNumber','Canton','ParlGroupCode','ParlGroupName','ID','IdVote','IdSession','VoteEnd']]
@@ -55,8 +58,8 @@ def format_voting_session(voting_df):
     # Append session related fields to the voting_df
     session_df = pd.read_csv('../../datas/scrap/Session/Legiid_37-50.csv',index_col=0)
     session_df.set_index('ID',inplace=True)
-    session_df['Year']=session_df['StartDate'].apply(pd.to_datetime).apply(lambda x: x.year)
-    session_df_name = session_df[['SessionName','Year']]  
+    session_df['Date']=session_df['StartDate'].apply(pd.to_datetime).apply(lambda x: x.date())
+    session_df_name = session_df[['SessionName','Date']]  
 
 
     voting_df = voting_df.join(session_df_name, on='IdSession')
@@ -83,22 +86,22 @@ def export_session_vote_csv(directory, deputee, df,file_):
         Computes the session level aggregation for a deputee and then stores in the directory given as input.
         Requires the name of the deputee, its associated dataframe
     """
-    df_grouped = df.groupby(['IdSession','SessionName','Year'])
+    df_grouped = df.groupby(['IdSession','SessionName','Date'])
 
     count_yes = lambda x: np.sum(x==1); count_no = lambda x: np.sum(x==2); 
     count_abstention = lambda x: np.sum(x==3); count_absent = lambda x: np.sum(x==5);
     count_excused = lambda x: np.sum(x==6); count_president = lambda x: np.sum(x==7);
-    conunt_total = lambda x: len(x)
+    count_total = lambda x: len(x);
     # There is a unique session name and year as we group by session -> We want to keep it and found
     # this kind of dirty way to do it.
     name_session = lambda x: x.unique()[0]; year_session = lambda x: x.unique()[0]
 
     df = df_grouped.agg({'Decision':{'Yes': count_yes, 'No': count_no,'Abstention': count_abstention,
-                    'Excused':count_excused, 'Absent':count_absent, 'President':count_president, 'Total': count_total}})
+                    'Excused':count_excused, 'Absent':count_absent, 'President':count_president, 'Total':count_total}})
 
     df.columns = df.columns.droplevel(0)
     df = df.reset_index().set_index('IdSession')
-    df = df[['Yes','No','Abstention','Absent','Excused','President','SessionName','Year']]
+    df = df[['Yes','No','Abstention','Absent','Excused','President','SessionName','Date']]
 
     df.to_csv(directory+deputee+file_)
     
