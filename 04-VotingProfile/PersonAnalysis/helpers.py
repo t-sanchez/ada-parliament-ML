@@ -4,6 +4,9 @@ import glob
 import os
 
 def load_vote_df():
+    """
+    Loads ad formats the Vote dataframe, keeping only the relevant fields and converting the time into proper dates.
+    """
     vote_df = pd.read_csv('../../datas/scrap/Vote/legiid_37-50.csv',index_col=0)
     print('Entries in the DataFrame',vote_df.shape)
     vote_df = vote_df[['VoteEnd','BillTitle','BusinessTitle','Subject','MeaningNo','MeaningYes','BusinessShortNumber','ID','IdLegislativePeriod','IdSession',
@@ -54,7 +57,9 @@ def load_voting():
     return voting_df
 
 def format_voting_session(voting_df):
-    
+    """
+        Formats the Voting DataFrame, appending to it the session-related entries.
+    """
     # Append session related fields to the voting_df
     session_df = pd.read_csv('../../datas/scrap/Session/Legiid_37-50.csv',index_col=0)
     session_df.set_index('ID',inplace=True)
@@ -69,6 +74,10 @@ def split_df_dict(df, field):
     """
         Splits the input df along a certain field into multiple dictionaries which links each unique
         entry of the field to the entries in the dataframe
+        @param df: the dataframe that we want to split into a dict.
+        @param field: the field along which we want to split the dataframe
+        @return df_dict: a dict which has as key the unique entries of field, and as item all the entries
+                            with the same key as a dataframe.
     """
     # Retrieve first all the unique Name entries
     unique_field = df[field].unique()
