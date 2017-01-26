@@ -1,4 +1,4 @@
-# 02 - Natural Language Processing (NLP)
+# 02 - Natural Language Processing (NLP) and Sentiment Analysis
 
 In this step, we train our NLP model on the *Transcript* data, and try to find as accurately as possible the topics that are treated in the parliament (we will need to determine by hand, from the bag of words, whether every topic make sense). We also need to vary the number of topics from one test to another, to find the optimal number of topics that we would need to get a meaningful result for each of the objects that are voted. There are two files here `01-nlp_Gensim` and `02-MLOnVotation`.
 
@@ -9,3 +9,6 @@ Note that at the moment, the NLP is only done with the French texts. We will not
 
 ## 02 - Machine Learning on the Votations
 We now take the big step of applying the model we created in `01-nlp_Gensim.ipynb` to actual new data : the *BusinessTitle* and *BillTitle* attributes of the *Vote* field. We want to see how accurately our model is able to classify what the law which is being voted at the Parliament is close to the different topics it found. We will have as a result a percentage of chance of belonging to each of the clusters. The result, shown in the `../datas/nlp_results/voting_with_topics.csv` file, shows that actually even with the first training of our model on a few topics, the classification is quite accurate, up to some problems maybe due to a lack of different topics (it seems that no topic is dedicated to education in our very first model).
+
+## 03 - Sentiment Anaylsis with Vader
+Using the `../datas/nlp_results/voting_with_topics.csv` file as well, we compute the polartiy of each law, counting the percentage of positive, negative and neutral words in `BillTitle` and `BusinessTitle` of each law.
