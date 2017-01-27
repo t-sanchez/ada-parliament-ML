@@ -1,5 +1,18 @@
- var parties;
-d3.json("../GroupId.json", function(list) {
+
+
+
+
+
+
+
+
+var linksperson;
+d3.json("../viz_data/linkspersons.json", function(list) {
+    console.log(list)
+    linksperson = list;
+
+});
+d3.json("../viz_data/GroupId.json", function(list) {
     console.log(list)
     parties = list;
 
@@ -23,7 +36,6 @@ var simulation = d3.forceSimulation()
     .force("center", d3.forceCenter(width / 2, height / 2));
 
  var input = document.getElementById("countries");
- console.log(input)
  var awesomplete = new Awesomplete(input, {
      minChars: 1,
      maxItems: 5,
@@ -31,7 +43,7 @@ var simulation = d3.forceSimulation()
  });
 
 var persons = []
-d3.json("../data.json", function(error, graph) {
+d3.json("../viz_data/data.json", function(error, graph) {
     if (error) throw error;
 console.log(graph)
  for (var i= 0 ; i<graph.nodes.length;++i){
@@ -63,7 +75,7 @@ console.log(graph)
             .on("drag", dragged)
             .on("end", dragended))
             .on("mouseover",function(d) {
-                console.log(this.id)
+                document.getElementById("pics").src="../pictures/"+linksperson[d.id] +".jpg";
                 d3.selectAll(".nodes").style("r", radius);
                 d3.select(this).style("r", 2 * radius)
                 document.getElementById("councilorName").innerHTML = d.id ;
@@ -104,7 +116,11 @@ console.log(graph)
                         return "black";
                 });
             })
-            .on("dblclick", dblclick);
+            .on("dblclick", function(d) {
+                localStorage['parl'] = d.id;
+                window.location.assign("../html/viz-person.html", '_blank');
+                //window.location.assign("../html/viz-person.html", '_blank');
+            });
 
 
     node.append("title")
@@ -117,7 +133,6 @@ console.log(graph)
         .attr("class", "legend")
         .style("font-size","12px")
         .attr("transform", function(d, i) {
-            console.log(i)
             return "translate("+ -1000 +"," + i * 20 + ")"; });
 
     legend.append("rect")
@@ -163,18 +178,6 @@ console.log(graph)
     }
 });
 
-function force() {
-    return function(d) {
-        var alpha,
-        alpha = 10;
-
-        var dx = alpha*(Math.sign((width / 2)- d.x)/Math.abs((width / 2)-d.x));
-        var dy = alpha*(Math.sign((height / 2)- d.y)/Math.abs((height / 2)- d.y));
-        console.log(dx)
-        d.x += dx;
-        d.y += dy;
-    };
-}
 function dragstarted(d) {
     if (!d3.event.active) simulation.alphaTarget(0.3).restart();
     d.fx = d.x;
@@ -219,7 +222,4 @@ function dragended(d) {
      d3.select("[id='" + input.value + "']")
          .style("r", 5 * radius);
 
- }
- function dblclick(a){
-     window.location.assign("../html/time_votation.html", '_blank');
  }

@@ -1,7 +1,7 @@
 /**
  * Created by Barry on 15/12/2016.
  */
-d3.json("../topicEvolution.json", function (json) {
+d3.json("../viz_data/topicEvolution.json", function (json) {
    makegraph_lines(json)
 
 });

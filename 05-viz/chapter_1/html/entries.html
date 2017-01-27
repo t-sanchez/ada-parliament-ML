@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+<head>
+    <title>imageDemo.html</title>
+    <meta charset = "UTF-8" />
+</head>
+<body>
+<style>
+    body {
+        background: gainsboro;
+        color:black;
+
+    }
+    img {
+        border-radius: 20px;
+        padding:1px;
+        border:1px solid #021a40;
+        background-color: #164bff;
+    }</style>
+<h1>Entries for swiss parliement activities</h1>
+<p>
+    <img src = "../entry_vote.png"
+         alt = "Picture of a happy monkey"
+    width="500"
+         onclick="vote()"/>
+    <img src = "../entry_subj.png"
+         alt = "Picture of a happy monkey"
+         width="500"
+         height = "255"
+         onclick="subj()"/>
+</p>
+<h2>Persons statistics (left) votations statistics(right)</h2>
+<p>
+    Choose your fighter !!!!!
+</p>
+</body>
+<script language="javascript" type="text/javascript">
+    function vote() {
+        window.location.assign("../html/votation_viz.html", '_blank');    }
+    function subj() {
+        window.location.assign("../html/votation_subj.html", '_blank');
+    }
+
+</script>
+
+</html>

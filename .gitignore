@@ -7,6 +7,9 @@ datas/Transcript\ copy
 datas/treated_data
 datas/Voting
 04-Analysis/*.json
+05-viz/chapter_1/*.json
+05-viz/chapter_1/*.csv
+05-viz/chapter_1/viz_data/*
 .DS_Store
 .ipynb_checkpoints
 __pycache__

@@ -26,7 +26,7 @@ function makehistogram(data) {
     var bins = d3.histogram()
         .domain(x.domain())
         (range_);
-    var y = d3.scaleLinear()
+    var y = d3.scaleOrdinal()
         .domain([0,Math.max.apply(Math, test)])
         .range([height,0]);
 
@@ -40,7 +40,9 @@ function makehistogram(data) {
         .attr("x", 1)
         .attr("width", x(bins[bins.length-1].x1) - x(bins[0].x0) -1 )
         .attr("height", function(d) {
-            return height -y(d.value);});
+            return height -y(d.value);})
+        .style("stroke", "black")
+        .style("stroke-width", 0.5);
 
     bar.append("text")
         .attr("dy", ".75em")
