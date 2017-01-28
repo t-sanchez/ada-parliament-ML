@@ -46,15 +46,18 @@
     }
 
 </style>
+<div>
 <h1>Visualisation on the Swiss Parliament</h1>
-
+<button type="button" onclick="handlehome()">Home page</button>
+<button type="button" onclick="handledep()">Deputee entry </button>
+<button type="button" onclick="handlevot()" >Votation entry</button>
 <input class="awesomplete"
        data-minchars="1"
        data-maxitems="5"
        placeholder="Enter a name"
        onkeypress="handleKeyPress(event)"
        id="countries"/>
-
+</div>
 <div id="councilor">
     <div><b>Law: </b> <d id="councilorName"> Law </d></div>
     <div><b>Topic: </b> <d id="councilorParty"> Topic </d></div>
@@ -66,7 +69,27 @@
 <!--<script src="../js/votation_viz.js"></script>-->
 <script src="../js/votation_subj.js"></script>
 
+<script>
+    function handlehome() {
 
+        window.location.assign("../html/entries.html", '_blank');
+
+    }
+    function handledep() {
+
+        window.location.assign("../html/votation_viz.html", '_blank');
+
+    }
+    function handlevot() {
+
+        window.location.assign("../html/votation_subj.html", '_blank');
+
+    }
+
+
+
+
+</script>
 
 </body>
 

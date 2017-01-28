@@ -6,7 +6,8 @@
 
 
 
-var linksperson;
+var linksperson = [];
+var parties= [];
 d3.json("../viz_data/linkspersons.json", function(list) {
     console.log(list)
     linksperson = list;
@@ -75,6 +76,7 @@ console.log(graph)
             .on("drag", dragged)
             .on("end", dragended))
             .on("mouseover",function(d) {
+                if (selected ==null){
                 document.getElementById("pics").src="../pictures/"+linksperson[d.id] +".jpg";
                 d3.selectAll(".nodes").style("r", radius);
                 d3.select(this).style("r", 2 * radius)
@@ -91,26 +93,48 @@ console.log(graph)
                             return 2;}
 
                     }
-                });
+                });}
             })
             .on("mouseout",dephasis)
             .on("click",function(d) {
-                selected = d;
-
+                if (selected == d)
+                    selected = null;
+                else{
+                    selected = d
+                    document.getElementById("pics").src="../pictures/"+linksperson[d.id] +".jpg";
+                    document.getElementById("councilorName").innerHTML = d.id ;
+                    document.getElementById("councilorParty").innerHTML = parties[d.group];
+                }
+                var src = document.getElementById("links");
+                while (src.firstChild) {
+                    src.removeChild(src.firstChild);
+                }
                 link.style('stroke-width', function(l) {
-                    if (d === l.source || d === l.target)
-                        return 2;
+                    if (selected!=null & (d === l.source || d === l.target) ){
+
+
+                    var img = document.createElement("img");
+                    img.width=50
+                        if (d==l.source){
+                    img.src = "../pictures/"+linksperson[l.target.id] +".jpg";}
+
+                    else {
+                            img.src = "../pictures/" + linksperson[l.source.id] + ".jpg"
+                        }
+                    src.appendChild(img);
+
+                        return 2;}
                     else
                         return 1;
                 });
                 link.style('stroke-opacity', function(l) {
-                    if (d === l.source || d === l.target)
+                    if (selected!=null & (d === l.source || d === l.target) )
                         return 10;
                     else
                         return 0.05;
                 });
                 link.style('stroke', function(l) {
-                    if (d === l.source || d === l.target)
+                    if (selected!=null & (d === l.source || d === l.target))
                         return color(d.group);
                     else
                         return "black";
@@ -139,6 +163,8 @@ console.log(graph)
         .attr("x", width - 18)
         .attr("width", 18)
         .attr("height", 18)
+        .attr("rx", "3px")
+        .attr("ry", "3px")
         .style("fill", color);
 
     legend.append("text")
@@ -205,8 +231,6 @@ function dragended(d) {
  function dephasis(d) {
      d3.selectAll(".nodes").style("r", radius);
      d3.select(this).style("r",radius);
-     document.getElementById("councilorName").innerHTML = "Name" ;
-     document.getElementById("councilorParty").innerHTML = "Party";
 
  }
 

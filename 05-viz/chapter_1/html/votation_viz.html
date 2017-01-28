@@ -31,10 +31,10 @@
     }
     #councilor {
         position: fixed;
-
-        right: 0;
+        top: 1px;
+        right: 1px;
         width: 300px;
-        border: 2px solid black;
+        border: 2px solid #000000;
 
     }
     .legend rect {
@@ -44,17 +44,26 @@
     search {
         width: 300px;
     }
+    img {
+        border-radius: 5px;
+        padding:1px;
+        border:1px solid #021a40;
+        background-color: #000000;
+    }
 
 </style>
+<div>
 <h1>Visualisation on the Swiss Parliament</h1>
-
+<button type="button" onclick="handlehome()">Home page</button>
+<button type="button" onclick="handledep()">Deputee entry </button>
+<button type="button" onclick="handlevot()" >Votation entry</button>
 <input class="awesomplete"
        data-minchars="1"
        data-maxitems="5"
-       placeholder="Enter a name"
+       placeholder="Looking for someone ?"
        onkeypress="handleKeyPress(event)"
        id="countries"/>
-
+</div>
 <div id="councilor">
     <div><b>Name: </b> <d id="councilorName"> Name </d></div>
     <div><b>Party: </b> <d id="councilorParty"> Party </d></div>
@@ -64,6 +73,7 @@
          alt = "Picture of a happy monkey"
          width="200"
          onclick="vote()"/>
+    <div id="links"> </div>
 
 </div>
 <svg width="1380" height="800"></svg>
@@ -72,7 +82,27 @@
 <!--<script src="../js/votation_viz.js"></script>-->
 <script src="../js/votation_viz.js"></script>
 
+<script>
+    function handlehome() {
 
+        window.location.assign("../html/entries.html", '_blank');
+
+    }
+    function handledep() {
+
+        window.location.assign("../html/votation_viz.html", '_blank');
+
+    }
+    function handlevot() {
+
+        window.location.assign("../html/votation_subj.html", '_blank');
+
+    }
+
+
+
+
+</script>
 
 </body>
 

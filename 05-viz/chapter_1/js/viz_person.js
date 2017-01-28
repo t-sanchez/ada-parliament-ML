@@ -1,7 +1,36 @@
+var input = document.getElementById("countries");
 
+var awesomplete = new Awesomplete(input, {
+    minChars: 1,
+    maxItems: 5,
+    autoFirst: true
+});
+
+var persons = []
+
+d3.json("../viz_data/data.json", function(error, graph) {
+    if (error) throw error;
+    console.log(graph)
+    for (var i = 0; i < graph.nodes.length; ++i) {
+        persons.push(graph.nodes[i].id)
+    }
+    awesomplete.list = persons;
+    console.log(persons)
+});
+
+var linksperson = [];
+var parties= [];
+d3.json("../viz_data/linkspersons.json", function(list) {
+    linksperson = list;
+
+});
+d3.json("../viz_data/GroupId.json", function(list) {
+    parties = list;
+
+});
 var margin = {top: 20, right: 20, bottom: 30, left: 140},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 560 - margin.left - margin.right,
+    height =250 - margin.top - margin.bottom;
 var formatTime = d3.timeFormat("%B %d, %Y")
 var x = d3.scaleBand()
     .rangeRound([0, width],-1)
@@ -26,12 +55,16 @@ var svg = d3.select("svg")
 //.attr("width", width + margin.left + margin.right)
 //.attr("height", height + margin.top + margin.bottom)
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + (300+margin.left) + "," + (margin.top) + ")");
 
 document.getElementById("title").innerHTML = "Description of : " +localStorage['parl'];
 
 string = localStorage['parl']+"_vote_session.csv"
 d3.csv("../viz_data/analysis/"+string, function(error, data) {
+
+    //document.getElementById("councilorParty").innerHTML = parties[d.group];
+
+
     if (error) throw error;
     color.domain(d3.keys(data[0]).filter(function(key) { return (key !== "SessionName" & key !=="Total" &
     key !=="Date" & key !== "IdSession"); }));
@@ -43,7 +76,7 @@ d3.csv("../viz_data/analysis/"+string, function(error, data) {
             return {name: name, x0: x0, x1: x0 += +d[name]}; });
         d.total = d.ages[d.ages.length - 1].x1;
 
-        console.log(d.total) });
+         });
 
     //data.sort(function(a, b) { return b.total - a.total; });
 
@@ -52,12 +85,12 @@ d3.csv("../viz_data/analysis/"+string, function(error, data) {
 
     svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(-0.3," + height + ")")
+        .attr("transform", "translate(-3," + height + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
-        .attr("dy", ".15em")
+        .attr("dy", "-.15em")
         .attr("transform", "rotate(-65)")
 
     svg.append("g")
@@ -94,12 +127,14 @@ d3.csv("../viz_data/analysis/"+string, function(error, data) {
         .data(color.domain().slice().reverse())
         .enter().append("g")
         .attr("class", "legend")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+        .attr("transform", function(d, i) { return "translate("+ -460 +"," + i * 20 + ")"; });
 
     legend.append("rect")
         .attr("x", width - 18)
         .attr("width", 18)
         .attr("height", 18)
+        .attr("rx", "3px")
+        .attr("ry", "3px")
         .style("fill", color);
 
     legend.append("text")
@@ -110,3 +145,17 @@ d3.csv("../viz_data/analysis/"+string, function(error, data) {
         .text(function(d) { return d; });
 
 });
+function handleKeyPress(e){
+    console.log("coucou")
+    var key=e.keyCode || e.which;
+    if (key==13){
+        findperson();
+    }
+
+}
+function findperson() {
+    var input  =document.getElementById("countries");
+    console.log(input.value)
+    localStorage['parl'] = input.value;
+    window.location.assign("../html/viz-person.html", '_blank');
+}

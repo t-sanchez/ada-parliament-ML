@@ -17,13 +17,18 @@
         border:1px solid #021a40;
         background-color: #164bff;
     }</style>
+<div>
 <h1>Entries for swiss parliement activities</h1>
+    <button type="button" onclick="handlehome()">Home page</button>
+    <button type="button" onclick="handledep()">Deputee entry </button>
+    <button type="button" onclick="handlevot()" >Votation entry</button>
+</div>
 <p>
-    <img src = "../entry_vote.png"
+    <img src = "../viz_data/entry_vote.png"
          alt = "Picture of a happy monkey"
     width="500"
          onclick="vote()"/>
-    <img src = "../entry_subj.png"
+    <img src = "../viz_data/entry_subj.png"
          alt = "Picture of a happy monkey"
          width="500"
          height = "255"
@@ -40,6 +45,27 @@
     function subj() {
         window.location.assign("../html/votation_subj.html", '_blank');
     }
+
+</script>
+<script>
+    function handlehome() {
+
+        window.location.assign("../html/entries.html", '_blank');
+
+    }
+    function handledep() {
+
+        window.location.assign("../html/votation_viz.html", '_blank');
+
+    }
+    function handlevot() {
+
+        window.location.assign("../html/votation_subj.html", '_blank');
+
+    }
+
+
+
 
 </script>
 

@@ -23,17 +23,112 @@
     .bar {
         fill: steelblue;
     }
+    #councilor {
+        position: absolute;
+        top: 1px;
+        right: 4px;
+        width: 300px;
+        border-radius: 10px;
+        border: 2px solid #000000;
+
+    }
 
 
 </style>
+<div>
 <h1 id = "title">Visualisation on the Swiss Parliament</h1>
+    <button type="button" onclick="handlehome()">Home page</button>
+    <button type="button" onclick="handledep()">Deputee entry </button>
+    <button type="button" onclick="handlevot()" >Votation entry</button>
 
-<svg width="980" height="600"></svg>
+
+    <input class="awesomplete"
+           data-minchars="1"
+           data-maxitems="5"
+           placeholder="Looking for someone ?"
+           onkeypress="handleKeyPress(event)"
+           id="countries"/>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.css">
+    <script src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
+
+</div>
+<svg width="880" height="350"></svg>
 
 
 
+<div id="councilor">
+    <div><b> <d id="councilorName"> Name </d></b> </div>
+    <div> <b> <d id="councilorParty"> Party </d></b> </div>
+    <img
+            id = "pics"
+            src = "../pictures/2023.jpg"
+            alt = "Picture of a happy monkey"
+            width="200"
+            onclick="vote()"/>
+    <div id="links"> </div>
+    <div> <b> <d id="councilorCanton"> Canton </d></b> </div>
+</div>
 <script src="http://d3js.org/d3.v4.min.js"></script>
+<script src="../js/deputee_info.js"></script>
+
 <script src="../js/viz_person.js"></script>
+<table id="table" class="display">
+    <thead>
+    <tr>
+        <th>BillTitle</th>
+        <th>Decision</th>
+        <th>Meaning of yes</th>
+        <th>Party yes</th>
+        <th>Party no</th>
+        <th>Party abstention</th>
+        <th>Total yes</th>
+        <th>Total no</th>
+        <th>Total abstention</th>
+        <th>Date</th>
+        <th>IdVote</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Row 1 Data 1</td>
+        <td>Row 1 Data 2</td>
+    </tr>
+    <tr>
+        <td>Row 2 Data 1</td>
+        <td>Row 2 Data 2</td>
+    </tr>
+    </tbody>
+</table>
+<script src="../js/jquery-3.1.1.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+<script src="http://d3js.org/d3.v4.min.js"></script>
+
+<script src="../js/tables.js"></script>
+<script>
+    function handlehome() {
+
+            window.location.assign("../html/entries.html", '_blank');
+
+    }
+    function handledep() {
+
+            window.location.assign("../html/votation_viz.html", '_blank');
+
+    }
+    function handlevot() {
+
+            window.location.assign("../html/votation_subj.html", '_blank');
+
+    }
+
+
+
+
+</script>
 
 
 </body>

@@ -11,9 +11,9 @@ d3.json("../viz_data/GroupId2.json", function(list) {
     groups.push("Non inscrit")
     group_number = groups.length
     dx = 1380/groups.length;
-    dy = 800/groups.length;
+    dy = 1000/groups.length;
     for (var i = 0; i < (groups.length); i++) {
-        y = 160+80*i
+        y = 260+80*i
         heights[groups[i]]=y
         for (var j = 0; j < 7; j++){
             votes[j+1]=0
@@ -33,7 +33,7 @@ d3.csv("../viz_data/bill_link/"+string , function(error, link) {
     if (error) throw error;
     var svgContainer = d3.select("svg")
         .attr("width", 1380)
-        .attr("height", 800);
+        .attr("height", 900);
 
     var svg = d3.select("svg"),
         width = +svg.attr("width"),
@@ -82,20 +82,40 @@ d3.csv("../viz_data/bill_link/"+string , function(error, link) {
 
 
         //Draw the Circle
-        var trans = 350;
+        var trans = 500;
+        var nodetext =   svgContainer
+        var circle = svgContainer
+        totalwidth = 0;
         for (var i = 0; i < 7; i++) {
-            trans += votes[i]*width/1000
+            trans += votes[i]*width/800
             var text = svg.append("g")
                 .append("text")
                 .text(votes[i+1])
-                .attr("transform", "translate(" + (11 * 10+(11 * 10 + 40)*i) + "," + (140) + ")");
+                .attr("transform", "translate(" + (11 * 10+(11 * 10 + 40)*i) + "," + (240) + ")");
+            if (i<2) {
+                totalwidth+=votes[i + 1] * width / 800
+                circle.append("rect")
+                    .attr("width", votes[i + 1] * width / 800)
+                    .attr("height", 30)
+                    .attr("transform", "translate(" + trans + "," + 20 + ")")
+                    .style("fill", color[i])
+                nodetext.append("text")
+                    .text(Math.round((100 * votes[i+1]) / (votes[1] + votes[2]))+"%")
+                    .attr("transform", "translate(" + (trans+i*((votes[i+1] * width / 800)-30)) + "," + 65 + ")")
 
-            var circle=       svgContainer.append("rect")
-                             .attr("width", votes[i+1]*width/1000)
-                            .attr("height", 20)
-                            .attr("transform","translate("+trans +","+ 20 + ")")
-                            .style("fill", color[i]);
+            }
         }
+        nodetext.append("text")
+            .text("Results on Final Votation")
+            .attr("transform", "translate(" + 530 + "," + 15 + ")")
+        circle.append("rect")
+            .attr("width", totalwidth)
+            .attr("height", 30)
+            .attr("rx", "3px")
+            .attr("transform", "translate(" + 500 + "," + 20 + ")")
+            .style("fill", "none")
+            .style("stroke", "#000000")
+        .   style("stroke-width", "1.5px")
 
             var node = svg.append("g")
                 .attr("class", "nodes")
@@ -104,6 +124,8 @@ d3.csv("../viz_data/bill_link/"+string , function(error, link) {
                 .enter().append("rect")
                 .attr("width", 10)
                 .attr("height", 10)
+                .attr("rx", "2px")
+                .attr("ry", "2px")
                 .attr('id', function(d){
                     return d.ID; })
                 .attr("fill", function(d) {
@@ -132,12 +154,16 @@ d3.csv("../viz_data/bill_link/"+string , function(error, link) {
             .enter().append("g")
             .attr("class", "legend")
             .attr("transform", function(d, i) {
-                return "translate("+ -300 +"," + i * 20 + ")"; });
+                return "translate("+ (-1100+(i%4 * 250)) +"," + (100+50*Math.floor(i/4)) + ") rotate(0) "; })
+            //.attr("transform", function(d, i) {
+            //    return "translate("+ -300 +"," + (i * 20-10) + ")"; });
 
         legend.append("rect")
             .attr("x", width - 18)
             .attr("width", 18)
             .attr("height", 18)
+            .attr("rx", "3px")
+            .attr("ry", "3px")
             .style("fill", function (d) {
                 return stringToColour(d)
 
@@ -158,15 +184,14 @@ d3.csv("../viz_data/bill_link/"+string , function(error, link) {
             for (var i = 0; i < 7; i++) {
                 var grid = svg.append("g")
                     .append("rect")
-                    .attr("width", "510px")
                     .attr("height", "510px")
-                    .attr("width", 11 * 10 + 30)
+                    .attr("width", 11 * 10 + 10)
                     .attr("height", 75 )
                     .attr("rx", 10)
                     .attr("ry", 10)
                     .style("fill", "none")
                     .style("stroke", color[i])
-                    .attr("transform", "translate(" + trans + "," + (150 +80*j) + ")");
+                    .attr("transform", "translate(" + (trans-4.6) + "," + (250 +80*j) + ")");
                 //bill_link = data[0]
                 //document.getElementById("title").innerHTML = data[0].BillTitle
                 //document.getElementById("title2").innerHTML = data[0].BusinessTitle
