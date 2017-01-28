@@ -4,7 +4,7 @@ pos ={}
 var votes = {}
 group_number = 0
 groups = [];
-d3.json("../viz_data/GroupId2.json", function(list) {
+d3.json("../viz_data/groupId2.json", function(list) {
     console.log(list)
     groups = list;
     groups.push("Parti vert-libéral")
