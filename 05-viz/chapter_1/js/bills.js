@@ -4,7 +4,7 @@ pos ={}
 var votes = {}
 group_number = 0
 groups = [];
-d3.json("../viz_data/GroupId2.json", function(list) {
+d3.json("../viz_data/groupId2.json", function(list) {
     console.log(list)
     groups = list;
     groups.push("Parti vert-libéral")
@@ -47,9 +47,7 @@ d3.csv("../viz_data/bill_link/"+string , function(error, link) {
 
 
     bill_link = link[0];
-    document.getElementById("title").innerHTML = link[0].BillTitle;
-    document.getElementById("title2").innerHTML = link[0].BusinessTitle;
-
+    document.getElementById("title").innerHTML = "<b> Loi votée : "+link[0].BillTitle+"</b>";
 
     bill = "voting_"+bill_link.ID+".csv";
     d3.csv("../viz_data/bill_voting/"+bill , function(error, data) {
