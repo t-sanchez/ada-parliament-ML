@@ -135,7 +135,7 @@ d3.csv("../viz_data/bill_link/"+string , function(error, link) {
                     return str })
                 .on("click", function(d) {
                     localStorage['parl'] = d.Name;
-                    window.location.assign("../html/viz-person.html", '_blank');
+                    window.location.assign("../html/viz_person.html", '_blank');
                     //window.location.assign("../html/viz-person.html", '_blank');
                 })
             node.append("title")

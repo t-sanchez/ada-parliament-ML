@@ -24,18 +24,50 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="130" lean-forward="true" selection-start-line="14" selection-start-column="130" selection-end-line="14" selection-end-column="130" />
+            <state relative-caret-position="171">
+              <caret line="23" column="43" lean-forward="false" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viz_person.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bills.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/bills.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="795">
+              <caret line="53" column="31" lean-forward="false" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="31" />
+              <folding>
+                <marker date="1485624858624" expanded="true" signature="2527:2535" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bills.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/bills.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2070">
+              <caret line="138" column="59" lean-forward="false" selection-start-line="138" selection-start-column="54" selection-end-line="138" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viz_person.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/viz_person.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="46" column="51" lean-forward="false" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
+            <state relative-caret-position="186">
+              <caret line="57" column="52" lean-forward="true" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viz_person.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/viz_person.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -54,10 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>inde</find>
-      <find>index</find>
-      <find>depj</find>
-      <find>counc</find>
       <find>&lt;sc</find>
       <find>table</find>
       <find>legen</find>
@@ -84,6 +112,10 @@
       <find>ha</find>
       <find>json</find>
       <find>_2</find>
+      <find>person</find>
+      <find>viz-p</find>
+      <find>p</find>
+      <find>awesom</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -111,10 +143,10 @@
         <option value="$PROJECT_DIR$/js/votation_viz.js" />
         <option value="$PROJECT_DIR$/js/viz_person.js" />
         <option value="$PROJECT_DIR$/html/bills.html" />
-        <option value="$PROJECT_DIR$/js/bills.js" />
         <option value="$PROJECT_DIR$/html/entries.html" />
         <option value="$PROJECT_DIR$/html/votation_viz.html" />
         <option value="$PROJECT_DIR$/html/viz_person.html" />
+        <option value="$PROJECT_DIR$/js/bills.js" />
       </list>
     </option>
   </component>
@@ -146,7 +178,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -203,6 +234,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -311,12 +343,13 @@
       <workItem from="1485617829513" duration="1688000" />
       <workItem from="1485623177521" duration="47000" />
       <workItem from="1485623255655" duration="364000" />
-      <workItem from="1485624967387" duration="144000" />
+      <workItem from="1485624967387" duration="610000" />
+      <workItem from="1485625982934" duration="667000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134049000" />
+    <option name="totallyTimeSpent" value="135182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1535" height="876" extended-state="6" />
@@ -394,7 +427,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -548,13 +580,6 @@
     <entry file="file://$PROJECT_DIR$/js/deputee_info.js" />
     <entry file="file://$PROJECT_DIR$/js/tables.js" />
     <entry file="file://$PROJECT_DIR$/html/viz-person.html" />
-    <entry file="file://$PROJECT_DIR$/js/viz_person.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="160" column="1" lean-forward="false" selection-start-line="160" selection-start-column="1" selection-end-line="160" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/viz_vote.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -569,64 +594,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/votation_viz_2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/bills.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding>
-            <marker date="1485624858624" expanded="true" signature="2527:2535" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/bills.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding>
-            <marker date="1485624645903" expanded="true" signature="792:6906" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="1413:6902" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="1513:1585" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="1735:2217" ph="/*...*/" />
-            <marker date="1485624645903" expanded="true" signature="2403:3255" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="2670:3245" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="4084:4120" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="4164:4227" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="4276:4590" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="4633:4867" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="4983:5021" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="5217:5327" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="5341:5452" ph="//..." />
-            <marker date="1485624645903" expanded="true" signature="5684:5741" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="6056:6895" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="6156:6885" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="6644:6832" ph="//..." />
-            <marker date="1485624645903" expanded="true" signature="7000:7064" ph="{...}" />
-            <marker date="1485624645903" expanded="true" signature="7119:7230" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/entries.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="26" lean-forward="false" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/html/votation_viz_2.html" />
+    <entry file="file://$PROJECT_DIR$/html/entries.html" />
     <entry file="file://$PROJECT_DIR$/html/votation_viz.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="66" column="21" lean-forward="false" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -640,16 +613,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="130" lean-forward="true" selection-start-line="14" selection-start-column="130" selection-end-line="14" selection-end-column="130" />
+        <state relative-caret-position="171">
+          <caret line="23" column="43" lean-forward="false" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/bills.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="31" lean-forward="false" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="31" />
+          <folding>
+            <marker date="1485624858624" expanded="true" signature="2527:2535" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bills.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2070">
+          <caret line="138" column="59" lean-forward="false" selection-start-line="138" selection-start-column="54" selection-end-line="138" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/viz_person.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="46" column="51" lean-forward="false" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
+        <state relative-caret-position="186">
+          <caret line="57" column="52" lean-forward="true" selection-start-line="57" selection-start-column="52" selection-end-line="57" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/viz_person.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
