@@ -47,9 +47,7 @@ d3.csv("../viz_data/bill_link/"+string , function(error, link) {
 
 
     bill_link = link[0];
-    document.getElementById("title").innerHTML = link[0].BillTitle;
-    document.getElementById("title2").innerHTML = link[0].BusinessTitle;
-
+    document.getElementById("title").innerHTML = "<b> Loi votée : "+link[0].BillTitle+"</b>";
 
     bill = "voting_"+bill_link.ID+".csv";
     d3.csv("../viz_data/bill_voting/"+bill , function(error, data) {
@@ -137,7 +135,7 @@ d3.csv("../viz_data/bill_link/"+string , function(error, link) {
                     return str })
                 .on("click", function(d) {
                     localStorage['parl'] = d.Name;
-                    window.location.assign("../html/viz-person.html", '_blank');
+                    window.location.assign("../html/viz_person.html", '_blank');
                     //window.location.assign("../html/viz-person.html", '_blank');
                 })
             node.append("title")

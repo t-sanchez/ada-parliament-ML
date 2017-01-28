@@ -10,6 +10,7 @@ datas/Voting
 05-viz/chapter_1/*.json
 05-viz/chapter_1/*.csv
 05-viz/chapter_1/viz_data/*
+05-viz/chapter_1.idea/*
 .DS_Store
 .ipynb_checkpoints
 __pycache__

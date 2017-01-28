@@ -4,12 +4,22 @@
 <head>
 
     <meta charset="utf-8">
+    <title>Law voted</title>
+    <link rel="stylesheet" href="../static/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/lib/css/keen-dashboards.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.css">
-
-    <title>Introduction à JavaScript</title>
 </head>
 
-<body>
+<body class="application">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Swiss Parliament Voting Visualisation</a><p class="navbar-text">
+            How is a law voted at the National Council?</p>
+        </div>
+    </div>
+</div>
 <style>
     body {
         background: gainsboro;
@@ -37,50 +47,41 @@
     }
 
 </style>
-<div>
-<h1 id="title">Visualisation on the Swiss Parliament</h1>
-<h2 id="title2">under title</h2>
-    <button type="button" onclick="handlehome()">Home page</button>
-    <button type="button" onclick="handledep()">Deputee entry </button>
-    <button type="button" onclick="handlevot()" >Votation entry</button>
-<input class="awesomplete"
-       data-minchars="1"
-       data-maxitems="5"
-       placeholder="Enter a name"
-       onkeypress="handleKeyPress(event)"
-       id="countries"/>
 
+
+<div class="container-fluid">
+    <div class="col-sm-12">
+        <div class="chart-wrapper">
+            <div class="chart-title" id="title"></div>
+            <div class="chart-stage">
+                <div id="grid-1-1" align = "center">
+                    <div>
+                        <input class="awesomplete"
+                           data-minchars="1"
+                           data-maxitems="5"
+                           placeholder="Looking for a law?"
+                           onkeypress="handleKeyPress(event)"
+                           id="countries"/>
+                    </div>
+                    <svg width="1580" height="2000">
+                        <div id="links"> </div>
+                    </svg>
+                </div>
+            </div>
+            <div class="chart-notes">
+                Todo
+            </div>
+        </div>
+    </div>
 </div>
-<svg width="1380" height="2000">
-    <div id="links"> </div>
 
-</svg>
 <script src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<!--<script src="../js/votation_viz.js"></script>-->
+<script src="../static/lib/js/jquery.min.js"></script>
+<script src="../static/lib/js/bootstrap.min.js"></script>
+<script src="../static/lib/js/d3.js"></script>
+<script src="../static/lib/js/keen.min.js"></script>
 <script src="../js/bills.js"></script>
-
-<script>
-    function handlehome() {
-
-        window.location.assign("../html/entries.html", '_blank');
-
-    }
-    function handledep() {
-
-        window.location.assign("../html/votation_viz.html", '_blank');
-
-    }
-    function handlevot() {
-
-        window.location.assign("../html/votation_subj.html", '_blank');
-
-    }
-
-
-
-
-</script>
 
 </body>
 
