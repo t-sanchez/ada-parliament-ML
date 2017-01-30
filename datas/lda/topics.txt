@@ -1,11 +1,11 @@
-0: budget
-1: dunno
-2: entreprise/ finance
-3: armée
-4: environnement
-5: imposition
-6: retraite  
-7: asile / immigration
-8: assurances
-9: famille / enfants
-10: politique internationale
+0:Juridiction
+1:Santé / Assurances
+2:Sécurité intérieure
+3:Economie / Travail
+4:Budget / Dépenses
+5:Dunno
+6:Politique internationale
+7:Recherche / Education
+8:Environnement / Transports
+9:Fiscalité
+10:Armée
