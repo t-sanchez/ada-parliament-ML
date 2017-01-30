@@ -132,7 +132,7 @@ console.log(graph)
         .attr("class", "legend")
         .style("font-size","12px")
         .attr("transform", function(d, i) {
-            return "translate("+ -150 +"," + i * 20 + ")"; });
+            return "translate("+ -450 +"," + i * 20 + ")"; });
 
     legend.append("rect")
         .attr("x", width - 18)

@@ -43,10 +43,15 @@
         search {
             width: 300px;
         }
+        .col-sm-2 {
+            left : 20px;
+            top : 93px;
+            position: absolute;
+        }
     </style>
 
     <div class="container-fluid">
-        <div class="col-sm-9">
+        <div class="col-sm-14">
             <div class="chart-wrapper">
                 <div class="chart-title">
                     Which deputee are close in their way of voting?
@@ -87,7 +92,7 @@
             </div>
 
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-2" >
             <div class="chart-wrapper">
                 <div class="chart-title">
                    Deputee information:
@@ -99,7 +104,7 @@
                     <img id = "pics"
                          src = "../pictures/2023.jpg"
                          alt = "Deputee picture"
-                         width="200"
+                         width="100"
                          onclick="vote()"/>
                     </div>
                 </div>
@@ -117,7 +122,6 @@
 
 <script src="../static/lib/js/jquery.min.sjs"></script>
 <script src="../static/lib/js/bootstrap.min.js"></script>
-<script src="../static/lib/js/d3.js"></script>
 <script src="../static/lib/js/keen.min.js"></script>
 </body>
 

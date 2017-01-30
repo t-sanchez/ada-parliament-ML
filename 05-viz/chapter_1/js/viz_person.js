@@ -158,5 +158,5 @@ function findperson() {
     var input  =document.getElementById("countries");
     console.log(input.value)
     localStorage['parl'] = input.value;
-    window.location.assign("../html/viz-person.html", '_blank');
+    window.location.assign("../html/viz_person.html", '_blank');
 }
