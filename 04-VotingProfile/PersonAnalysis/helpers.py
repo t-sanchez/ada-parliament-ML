@@ -3,7 +3,12 @@ import numpy as np
 import glob
 import os
 
+VOTE_DICT  = {1:'Yes', 2:'No', 3:'Abstention', 5:'Absent', 6:'Excused', 7:'President'}
+
 def load_vote_df():
+    """
+    Loads ad formats the Vote dataframe, keeping only the relevant fields and converting the time into proper dates.
+    """
     vote_df = pd.read_csv('../../datas/scrap/Vote/legiid_37-50.csv',index_col=0)
     print('Entries in the DataFrame',vote_df.shape)
     vote_df = vote_df[['VoteEnd','BillTitle','BusinessTitle','Subject','MeaningNo','MeaningYes','BusinessShortNumber','ID','IdLegislativePeriod','IdSession',
@@ -41,20 +46,30 @@ def load_voting():
         'Groupe BD':'Parti Bourgeois-Démocratique', 'Non inscrit':'Non inscrit'}
     parties_dict = {'G':'PES', 'S':'PS', 'GL':'PVL', 'RL':'PLR', 
                      'V':'UDC', 'CE':'PDC', 'BD':'PBD', 'C':'PDC', '-':'Other', 'CEg':'PDC'}
+   
+    
     voting_df['ParlGroupName'].replace(pd.Series(parties_name_dict), inplace=True)
     voting_df['ParlGroupCode'].replace(pd.Series(parties_dict), inplace=True)
+    voting_df['Decision'].replace(pd.Series(VOTE_DICT),inplace=True)
     
     # 3. Process some supplementary fields
     voting_df.insert(1,'Name', voting_df['FirstName'] + ' ' + voting_df['LastName'])
     voting_df['VoteEnd'] = voting_df['VoteEnd'].apply(pd.to_datetime).apply(lambda x: x.date())
     
+    # Put the BusinessTitle as BillTitle when the BillTitle is unavailable
+    voting_df.loc[voting_df.BillTitle.isnull(),'BillTitle'] =  voting_df.loc[
+    voting_df.BillTitle.isnull(),'BusinessTitle']
+
+    
     # 4. Keep only the relevant fields    
-    voting_df = voting_df[['Name','BillTitle','BusinessTitle', 'Decision', 'DecisionText','BusinessShortNumber','Canton','ParlGroupCode','ParlGroupName','ID','IdVote','IdSession','VoteEnd']]
+    voting_df = voting_df[['Name','BillTitle', 'Decision','BusinessShortNumber','ParlGroupName', 'ParlGroupCode','IdVote','IdSession','VoteEnd']]
     
     return voting_df
 
 def format_voting_session(voting_df):
-    
+    """
+        Formats the Voting DataFrame, appending to it the session-related entries.
+    """
     # Append session related fields to the voting_df
     session_df = pd.read_csv('../../datas/scrap/Session/Legiid_37-50.csv',index_col=0)
     session_df.set_index('ID',inplace=True)
@@ -69,6 +84,10 @@ def split_df_dict(df, field):
     """
         Splits the input df along a certain field into multiple dictionaries which links each unique
         entry of the field to the entries in the dataframe
+        @param df: the dataframe that we want to split into a dict.
+        @param field: the field along which we want to split the dataframe
+        @return df_dict: a dict which has as key the unique entries of field, and as item all the entries
+                            with the same key as a dataframe.
     """
     # Retrieve first all the unique Name entries
     unique_field = df[field].unique()
@@ -77,7 +96,9 @@ def split_df_dict(df, field):
     df_dict = {elem : pd.DataFrame for elem in unique_field}
 
     for key in df_dict.keys():
-        df_dict[key] = df.loc[df[field] == key]
+        df_deputee = df.loc[df[field] == key]
+        df_deputee = df_deputee.drop('Name',1)
+        df_dict[key] = df_deputee
     
     return df_dict
     
@@ -88,9 +109,9 @@ def export_session_vote_csv(directory, deputee, df,file_):
     """
     df_grouped = df.groupby(['IdSession','SessionName','Date'])
 
-    count_yes = lambda x: np.sum(x==1); count_no = lambda x: np.sum(x==2); 
-    count_abstention = lambda x: np.sum(x==3); count_absent = lambda x: np.sum(x==5);
-    count_excused = lambda x: np.sum(x==6); count_president = lambda x: np.sum(x==7);
+    count_yes = lambda x: np.sum(x==VOTE_DICT[1]); count_no = lambda x: np.sum(x==VOTE_DICT[2]); 
+    count_abstention = lambda x: np.sum(x==VOTE_DICT[3]); count_absent = lambda x: np.sum(x==VOTE_DICT[5]);
+    count_excused = lambda x: np.sum(x==VOTE_DICT[6]); count_president = lambda x: np.sum(x==VOTE_DICT[7]);
     count_total = lambda x: len(x);
     # There is a unique session name and year as we group by session -> We want to keep it and found
     # this kind of dirty way to do it.

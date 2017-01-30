@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deputies Voting</title>
+    <link rel="stylesheet" href="../static/lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/lib/css/keen-dashboards.css">
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.css">
+
+</head>
+<body class="application">
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Swiss Parliament Voting Visualisation</a><p class="navbar-text">
+            How is a law voted at the National Council?</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: gainsboro;
+        color:black;
+
+    }
+    text {
+        stroke-opacity: 1;
+        color: black ;
+    }
+    .links line {
+        stroke: #999;
+        stroke-opacity: 0.1;
+    }
+
+    .nodes circle {
+        stroke: #fff;
+        stroke-width: 1.5px;
+    }
+    search {
+        width: 300px;
+    }
+
+</style>
+
+<div class="container-fluid">
+    <div class="col-sm-9">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Can we extract automatically the topic of the laws from what they describe?
+            </div>
+            <div class="chart-stage">
+                <div id="grid-1-1" align = "center">
+                    <input class="awesomplete"
+                           data-minchars="1"
+                           data-maxitems="5"
+                           placeholder="Looking for a law?"
+                           onkeypress="handleKeyPress(event)"
+                           id="countries"/>
+
+                    <svg width="1080" height="500"></svg>
+                    <script src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
+                    <script src="https://d3js.org/d3.v4.min.js"></script>
+                    <script src="../js/votation_subj.js"></script>
+
+                </div>
+            </div>
+            <div class="chart-notes">
+                TODO
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-3">
+        <div class="chart-wrapper">
+            <div class="chart-title">
+                Law information:
+            </div>
+            <div class="chart-stage">
+                <div>
+                    <div><b>Law: </b> <d id="law"></d></div>
+                    <div><b>Topic: </b> <d id="topic"></d></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<hr>
+<p class="small text-muted">Inspired from the design of <a href ="https://github.com/adilmoujahid/DonorsChoose_Visualization"> Adil Moujahid</a>. </p>
+
+</div>
+
+<script src="../static/lib/js/jquery.min.js"></script>
+<script src="../static/lib/js/bootstrap.min.js"></script>
+<script src="../static/lib/js/keen.min.js"></script>
+</body>
+
+<script language="javascript" type="text/javascript">
+    function vote() {
+        window.location.assign("../html/votation_viz.html", '_blank');}
+    function subj() {
+        window.location.assign("../html/votation_subj.html", '_blank');
+    }
+</script>
+
+</html>

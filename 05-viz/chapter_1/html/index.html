@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Parliament Voting</title>
+  <link rel="stylesheet" href="../static/lib/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/lib/css/keen-dashboards.css">
+  <link rel="stylesheet" href="../static/css/custom.css">
+
+
+</head>
+<body class="application">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    	<div class="container-fluid">
+      		<div class="navbar-header">
+        		<a class="navbar-brand" href="../">Swiss Parliament Voting Visualisation</a><p class="navbar-text"> How do the people from the National Council vote?</p>
+      		</div>
+    	</div>
+  	</div>
+
+  <div class="container-fluid">
+  	<div class="col-sm-6">
+			<div class="chart-wrapper">
+				<div class="chart-title">
+					Deputees of the Parliament
+				</div>
+				<div class="chart-stage">
+					<div id="grid-1-1" align = "center">
+						<img src = "../viz_data/entry_vote.png"
+									alt = "Voting profile of each deputee"
+									width="700"
+									onclick="vote()"/>
+					</div>
+				</div>
+   			<div class="chart-notes">
+     			This first approach details the votes that one deputee of the National Council made throughout his stay at the Parliament. It has two possible graphs, either aggregated by session, or at a single law level.
+    		</div>
+			</div>
+		</div>
+
+		<div class="col-sm-6">
+			<div class="chart-wrapper">
+				<div class="chart-title">
+					Votes at the Parliament
+				</div>
+				<div class="chart-stage">
+					<div id="grid-1-1" align = "center">
+						<img src = "../viz_data/entry_vote.png"
+								alt = "Topic of each law voted"
+								width="700"
+								onclick="subj()"/>
+					</div>
+				</div>
+   			<div class="chart-notes">
+     			The second approeach details what is the topic of each law voted, and allows for a visualisation of the vote that each deputee made on a given law.
+    		</div>
+			</div>
+    </div>
+  </div>
+
+
+    <hr>
+    <p class="small text-muted">Inspired from the design of <a href ="https://github.com/adilmoujahid/DonorsChoose_Visualization"> Adil Moujahid</a>. </p>
+
+  </div>
+
+  <script src="../static/lib/js/jquery.min.js"></script>
+  <script src="../static/lib/js/bootstrap.min.js"></script>
+  <script src="../static/lib/js/keen.min.js"></script>
+</body>
+
+<script language="javascript" type="text/javascript">
+    function vote() {
+        window.location.assign("../html/votation_viz.html", '_blank');}
+    function subj() {
+        window.location.assign("../html/votation_subj.html", '_blank');
+    }
+</script>
+
+</html>
+
