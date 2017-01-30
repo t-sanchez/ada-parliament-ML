@@ -38,18 +38,8 @@ def load_voting():
     
     voting_df.reset_index(inplace=True)
     
-        # 2. Update the names of the parties
-    parties_name_dict = {'Groupe écologiste':'Parti écologiste suisse (Les Verts)', 'Groupe socialiste':'Parti socialiste', 
-        "Groupe vert'libéral":'Parti vert-libéral', 'Groupe radical-démocratique':'Parti libéral-radical',
-        'Groupe des Paysans, Artisans et Bourgeois':'Union démocratique du centre',
-        'Groupe conservateur-catholique':'Parti démocrate-chrétien', 
-        'Groupe BD':'Parti Bourgeois-Démocratique', 'Non inscrit':'Non inscrit'}
-    parties_dict = {'G':'PES', 'S':'PS', 'GL':'PVL', 'RL':'PLR', 
-                     'V':'UDC', 'CE':'PDC', 'BD':'PBD', 'C':'PDC', '-':'Other', 'CEg':'PDC'}
-   
-    
-    voting_df['ParlGroupName'].replace(pd.Series(parties_name_dict), inplace=True)
-    voting_df['ParlGroupCode'].replace(pd.Series(parties_dict), inplace=True)
+        # 2. Update the Decision Entries of the parties
+
     voting_df['Decision'].replace(pd.Series(VOTE_DICT),inplace=True)
     
     # 3. Process some supplementary fields
