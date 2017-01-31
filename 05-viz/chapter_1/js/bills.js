@@ -88,7 +88,7 @@ function createpage(bill_str) {
         })
         if (error) throw error;
         var svgContainer = d3.select("svg")
-            .attr("width", 880)
+            .attr("width", 980)
             .attr("height", 900);
 
         var svg = d3.select("svg"),
@@ -108,7 +108,7 @@ function createpage(bill_str) {
 
         var nodetext =   svgContainer
         var circle = svgContainer
-        var offset = 100;
+        var offset = 180;
         var trans = 0;
         totalwidth = 200;
         d3.json("../viz_data/vote_dict.json", function (d) {
@@ -156,8 +156,8 @@ function createpage(bill_str) {
                 case 6:
                     var text = svg.append("g")
                         .append("text")
-                        .text("President")
-                        .attr("transform", "translate(" + (offset-30) + "," + (120) + ")")
+                        .text("Group / President")
+                        .attr("transform", "translate(" + (offset-100) + "," + (120) + ")")
                         .attr("font-weight", "bold");
                     break;
             }
@@ -179,7 +179,7 @@ function createpage(bill_str) {
 
         nodetext.append("text")
             .text("Results on Final Votation")
-            .attr("transform", "translate(" + (width/2-offset+20) + "," + 15 + ")")
+            .attr("transform", "translate(" + (width/2-80) + "," + 15 + ")")
         circle.append("rect")
             .attr("width", totalwidth)
             .attr("height", 30)
@@ -270,7 +270,7 @@ function createpage(bill_str) {
             .enter().append("g")
             .attr("class", "legend")
             .attr("transform", function(d, i) {
-                return "translate("+ (-width+100) +"," + (160 + 95 * i) + ") rotate(0) "; })
+                return "translate("+ (-width+offset+60) +"," + (180 + 95 * i) + ") rotate(0) "; })
             //.attr("transform", function(d, i) {
             //    return "translate("+ -300 +"," + (i * 20-10) + ")"; });
 

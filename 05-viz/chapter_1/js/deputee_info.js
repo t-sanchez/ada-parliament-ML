@@ -10,6 +10,9 @@ d3.json("../viz_data/deputee_names/"+string, function(error, data) {
     console.log(localStorage['parl'])
 document.getElementById("pics").src="../pictures/"+linksperson[data.Name] +".jpg";
 document.getElementById("councilorName").innerHTML = data.Name ;
+document.getElementById("councilorBirth").innerHTML = data.DateOfBirth+" in "+data.BirthPlace_City;
+document.getElementById("councilorGroup").innerHTML = data.ParlGroupName ;
+
 document.getElementById("councilorParty").innerHTML = data.PartyName ;
 document.getElementById("councilorCanton").innerHTML = data.CantonName ;
 
