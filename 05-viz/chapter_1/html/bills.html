@@ -29,6 +29,10 @@
     text {
         stroke-opacity: 1;
         color: black;
+
+    }
+    .legend text{
+        font-weight: bold;
     }
     .links line {
         stroke: #000000;
@@ -45,16 +49,32 @@
         stroke-opacity: 1;
         color: black;
     }
+    div#picblock {
+        right : 0px;
+        position: fixed;
+    }
+    .legend text{
+        font-size: x-small;
+        width: 10px
+    }
+
 
 </style>
 
 
 <div class="container-fluid">
-    <div class="col-sm-12">
+    <div class="col-sm-10">
         <div class="chart-wrapper">
             <div class="chart-title" id="title"></div>
             <div class="chart-stage">
+
                 <div id="grid-1-1" align = "center">
+
+                    <div align ="left">
+                    <select name = "navyOp" id="navig"  onchange="change(this);">
+                        <option selected = "selected">Select a Law iteration</option>
+                    </select>
+                    </div>
                     <div>
                         <input class="awesomplete"
                            data-minchars="1"
@@ -63,7 +83,7 @@
                            onkeypress="handleKeyPress(event)"
                            id="countries"/>
                     </div>
-                    <svg width="1580" height="2000">
+                    <svg width="1280" height="2000">
                         <div id="links"> </div>
                     </svg>
                 </div>
@@ -71,6 +91,18 @@
             <div class="chart-notes">
                 Todo
             </div>
+        </div>
+    </div>
+    <div id="picblock" align = "center" class="col-sm-2">
+        <div class="chart-wrapper">
+        <div><b>Name: </b> <d id="councilorName"> Name </d></div>
+        <div><b>Party: </b> <d id="councilorParty"> Party </d></div>
+        <!---<div> <b> Canton:</b> <d id="councilorCanton"> Canton </d> </div>-->
+        <img id = "pics"
+             src = "../pictures/unknown.jpg"
+             alt = "Deputee picture"
+             width="170"
+             onclick="vote()"/>
         </div>
     </div>
 </div>

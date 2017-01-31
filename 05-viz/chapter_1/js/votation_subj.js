@@ -1,4 +1,4 @@
-var topics;
+var topics =[];
 var pos =[];
 var map = {};
 var passage ={};
@@ -10,14 +10,12 @@ d3.csv("../viz_data/map_bill_ID.csv", function(mapping){
     });
 });
 d3.json("../viz_data/topics.json", function(list) {
-    console.log(list)
     topics = list;
     dx = 1380/topics.length;
     dy = 800/topics.length;
     for (var i = 0; i < (topics.length); i++) {
         x = (i)%((topics.length)/2)*dx/12
         y = 2//+10*(i>=(topics.length)/2)
-        console.log(y)
         pos.push([x,y])
 
     }
@@ -47,11 +45,10 @@ var awesomplete = new Awesomplete(input, {
 });
 
 var persons = []
-d3.json("../viz_data/datasubject.json", function(error, graph) {
+d3.csv("../viz_data/voting_single_topic.csv", function(error, graph) {
     if (error) throw error;
-    console.log(graph)
-    for (var i= 0 ; i<graph.nodes.length;++i){
-        persons.push(graph.nodes[i].id)
+    for (var i= 0 ; i<graph.length;++i){
+        persons.push(graph[i].text)
 
     }
     awesomplete.list = persons;
@@ -60,22 +57,23 @@ d3.json("../viz_data/datasubject.json", function(error, graph) {
     var node = svg.append("g")
         .attr("class", "nodes")
         .selectAll("circle")
-        .data(graph.nodes)
+        .data(graph)
         .enter().append("circle")
         .attr("r", 5)
         .attr('id', function(d){
-            return d.id; })
+            return d.text; })
         .attr("fill", function(d) {
 
-            return color(d.group); })
+            return color(d.Topic); })
         .attr("x", function(d) {
-            place = position(d.group)
-            if (d.group in passage)
-                passage[d.group]+=1
+
+            place = position(d.Topic)
+            if (d.Topic in passage)
+                passage[d.Topic]+=1
             else
-                passage[d.group]=1
-            d.x = 20+(place[0])*21+(passage[d.group]%6)*17
-            d.y = (place[1])*6+Math.floor(passage[d.group]/6)*5
+                passage[d.Topic]=1
+            d.x = 10+(place[0])*17+(passage[d.Topic]%6)*12
+            d.y = (place[1])*6+Math.floor(passage[d.Topic]/6)*5
             return (40-place[0])*20;})
 
         .call(d3.drag()
@@ -85,24 +83,26 @@ d3.json("../viz_data/datasubject.json", function(error, graph) {
         .on("mouseover",function(d) {
             d3.selectAll(".nodes").style("r", radius);
             d3.select(this).style("r", 2 * radius)
-            document.getElementById("councilorName").innerHTML = d.id ;
-            document.getElementById("councilorParty").innerHTML = d.group;
+            document.getElementById("law").innerHTML = d.text ;
+            document.getElementById("topic").innerHTML = d.Topic;
 
         })
         .on("mouseout",dephasis)
         .on("click",function(d) {
             console.log(map)
-            id = map[d.id]
+            id = map[d.text.substring(1, d.text.length)]
+            string = "bill_"+id+".csv";
+            d3.csv("../viz_data/bill_link/"+string , function(error, link) {
 
-            localStorage['subject'] = id;
-            window.location.assign("../html/bills.html", '_blank');
+                bill_link = link[link.length-1];
+
+                localStorage['bills'] = JSON.stringify(link);
+                localStorage['bill'] = JSON.stringify(bill_link);
+                window.location.assign("../html/bills.html", '_blank');
+                ;})
+
 
         })
-        .on("dblclick", function(d) {
-            localStorage['parl'] = d.id;
-            window.location.assign("../html/viz_person.html", '_blank');
-            //window.location.assign("../html/viz-person.html", '_blank');
-        });
 
 
     node.append("title")
@@ -115,7 +115,7 @@ d3.json("../viz_data/datasubject.json", function(error, graph) {
         .attr("class", "legend")
         .style("font-size","12px")
         .attr("transform", function(d, i) {
-            return "translate("+ (-900+i * 30) +"," + -450 + ") rotate(40) "; })
+            return "translate("+ (-500+i * 30) +"," + -250 + ") rotate(40) "; })
 
 
     legend.append("rect")
@@ -137,7 +137,7 @@ d3.json("../viz_data/datasubject.json", function(error, graph) {
 
 
     simulation
-        .nodes(graph.nodes)
+        .nodes(graph)
         .on("tick", ticked);
 
     //simulation.force("link")
@@ -146,18 +146,10 @@ d3.json("../viz_data/datasubject.json", function(error, graph) {
 
 
     function ticked() {
-        // link
-        //     .attr("x1", function(d) {
-        //         return d.source.x; })
-        //     .attr("y1", function(d) { return d.source.y; })
-        //     .attr("x2", function(d) {
-        //         return d.target.x; })
-        //     .attr("y2", function(d) { return d.target.y; });
 
         node
-        //.each(gravity())
-            .attr("cx", function(d) { return d.x = Math.max(r, Math.min(width - r, d.x)); })
-            .attr("cy", function(d) { return d.y= Math.max(r, Math.min(height - r, d.y)); });
+            .attr("cx", function(d) {return d.x })
+            .attr("cy", function(d) { return d.y});
 
 
 
@@ -191,8 +183,8 @@ function emphasis(d) {
 function dephasis(d) {
     d3.selectAll(".nodes").style("r", radius);
     d3.select(this).style("r",radius);
-    document.getElementById("councilorName").innerHTML = "Law" ;
-    document.getElementById("councilorParty").innerHTML = "Topic";
+    document.getElementById("law").innerHTML = "" ;
+    document.getElementById("topic").innerHTML = "";
 
 }
 
@@ -203,12 +195,11 @@ function handleKeyPress(e){
     }
 
 }
+research_number = 0
 function findperson() {
     var input  =document.getElementById("countries");
-    d  = d3.select("[id='" + input.value + "']")
-        .style("r", 5 * radius)
-        .attr("transform", function(d) {
-            return "translate("+ (-d.x+30) +"," + (-d.y+25) + ")"; });
+    d  = document.getElementById(input.value)
+    fakeClick(d)
 }
 function gravity() {
     return function(d) {
@@ -229,3 +220,9 @@ function position(string){
     //console.log(pos[a])
     return pos[a]
 }
+var fakeClick = function(node) {
+
+    var event = document.createEvent('MouseEvents');
+    event.initMouseEvent('click');
+    node.dispatchEvent(event);
+};

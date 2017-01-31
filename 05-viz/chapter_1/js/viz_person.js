@@ -55,7 +55,7 @@ var svg = d3.select("svg")
 //.attr("width", width + margin.left + margin.right)
 //.attr("height", height + margin.top + margin.bottom)
     .append("g")
-    .attr("transform", "translate(" + (300+margin.left) + "," + (margin.top) + ")");
+    .attr("transform", "translate(" + (150+margin.left) + "," + (margin.top) + ")");
 
 document.getElementById("title").innerHTML = "Description of " +localStorage['parl'];
 document.getElementById("title_short").innerHTML = "Vote of "+localStorage['parl'];

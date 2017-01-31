@@ -36,6 +36,18 @@
     .bar {
         fill: steelblue;
     }
+    td.yes {
+        font-weight: bold;
+        color: green;
+    }
+    td.no {
+        font-weight: bold;
+        color: red;
+    }
+    td.abs {
+        font-weight: bold;
+        color: orange;
+    }
 </style>
 <div>
 
@@ -62,15 +74,12 @@
 
                             <svg width="880" height="350"></svg>
 
-                            <script src="http://d3js.org/d3.v4.min.js"></script>
-                            <script src="../js/deputee_info.js"></script>
-                            <script src="../js/viz_person.js"></script>
-                            <script src="http://d3js.org/d3.v4.min.js"></script>
+
                          </div>
                      </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3" align = "center">
                 <div class="chart-wrapper">
                     <div class="chart-title">
                         Deputee information:
@@ -81,7 +90,7 @@
                             <div><b>Party: </b> <d id="councilorParty"> Party </d></div>
                             <div> <b> Canton:</b> <d id="councilorCanton"> Canton </d> </div>
                             <img id = "pics"
-                                src = "../pictures/2023.jpg"
+                                src = "../pictures/unknown.jpg"
                                 alt = "Deputee picture"
                                 width="200"
                                 onclick="vote()"/>
@@ -104,16 +113,10 @@
                         <thead>
                         <tr>
                             <th>BillTitle</th>
-                            <th>Decision</th>
-                            <th>Meaning of yes</th>
-                            <th>Party yes</th>
-                            <th>Party no</th>
-                            <th>Party abstention</th>
-                            <th>Total yes</th>
-                            <th>Total no</th>
-                            <th>Total abstention</th>
                             <th>Date</th>
-                            <th>IdVote</th>
+                            <th>Decision</th>
+                            <th>Party Decision</th>
+                            <th>Results</th>
 
                         </tr>
                         </thead>
@@ -148,7 +151,10 @@
 
 </div>
 
-
+<script src="http://d3js.org/d3.v4.min.js"></script>
+<script src="../js/deputee_info.js"></script>
+<script src="../js/viz_person.js"></script>
+<script src="http://d3js.org/d3.v4.min.js"></script>
 
 </body>
 
