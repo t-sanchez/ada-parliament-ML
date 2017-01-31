@@ -90,7 +90,14 @@ d3.csv("../viz_data/voting_single_topic.csv", function(error, graph) {
         .on("mouseout",dephasis)
         .on("click",function(d) {
             console.log(map)
-            id = map[d.text.substring(1, d.text.length)]
+
+            if (d.text.substring(0,1)==" "){
+                console.log(d.text)
+            id = map[d.text.substring(1, d.text.length)]}
+            else{
+                console.log(d.text)
+                id = map[d.text]}
+
             string = "bill_"+id+".csv";
             d3.csv("../viz_data/bill_link/"+string , function(error, link) {
 

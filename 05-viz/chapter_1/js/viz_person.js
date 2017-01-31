@@ -39,8 +39,6 @@ var x = d3.scaleBand()
 var y = d3.scaleLinear()
     .rangeRound([height, 0]);
 
-var color = d3.scaleOrdinal()
-    .range(["#00B425", "#FF002D", "#F47D00", "#000000", "#A5AEB4", "#37009D", "#37009D"]);
 
 // var yAxis = d3.svg.axis()
 //     .scale(y)
@@ -62,6 +60,9 @@ document.getElementById("title_short").innerHTML = "Vote of "+localStorage['parl
 
 string = localStorage['parl']+"_vote_session.csv"
 d3.csv("../viz_data/analysis/"+string, function(error, data) {
+    var color = d3.scaleOrdinal()
+        .range(["#00B425", "#FF002D", "#F47D00", "#000000", "#A5AEB4", "#37009D", "#37009D"]);
+
 
     //document.getElementById("councilorParty").innerHTML = parties[d.group];
 
