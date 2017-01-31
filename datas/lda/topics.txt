@@ -1,0 +1,11 @@
+0:Environnement / Transports
+1:Armée / Défense
+2:Recherche / Education
+3:Economie / Budget
+4:Sécurité Intérieure
+5:Affaires Juridiques
+6:Entreprise / Finance
+7:Politique Internationale
+8:Politique Intérieure
+9:Assurances / Santé
+10:Politique Gouvernementale
