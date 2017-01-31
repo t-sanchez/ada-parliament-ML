@@ -21,3 +21,10 @@ run all the information concerning a deputy, party, group, voted law etc...
 ### bills.js/html
 run the description of a given law, as all its voting iterations.
 
+
+you can find follow the google drive links for the necessary datas to run the vizualisation:
+
+[viz_data](https://drive.google.com/open?id=0B59kcXdstMisdkN6NG5maVRkUVE)
+[pictures](https://drive.google.com/open?id=0B59kcXdstMisaVZsYU4yUkpxcm8)
+
+In order to launch without troubles put these too folders directly in the chapter_1 folder
