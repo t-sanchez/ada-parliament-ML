@@ -26,7 +26,6 @@ d3.csv("../viz_data/SubjectTopicMapping.csv", function(error, graph) {
     })
     awesomplete.list = persons;
 });
-
 votes_indices ={}
 heights = {};
 pos ={}
@@ -43,17 +42,16 @@ var src = document.getElementById("navig");
 for (var i = 0; i < bills.length; i++) {
     var option = document.createElement("option");
     if (bills[i].Subject !="NaN")
-    option.innerHTML = bills[i].Subject
+    option.innerHTML =i+":"+ bills[i].Subject
     else
-        option.innerHTML = "Subject not specified"
+        option.innerHTML =i+":"+ "Subject not specified"
     option.value = bills[i].ID
+    option.id = i
     src.appendChild(option);
 }
 bill = JSON.parse(localStorage['bill']);
 bill_str = "voting_"+bill.ID+".csv";
 createpage(bill_str)
-console.log(bill.BusinessTitle)
-console.log(bill.BillTitle)
 if (bill.BillTitle == bill.BusinessTitle)
 document.getElementById("title").innerHTML = "<b> Loi votée : "+bill.BillTitle+"</b>";
 else
@@ -77,6 +75,7 @@ function createpage(bill_str) {
         votes[0]=0;
 
     d3.csv("../viz_data/bill_voting/"+bill_str , function(error, data) {
+        console.log(data)
 
         if (error) throw error;
         data.forEach(function (person) {
@@ -87,7 +86,6 @@ function createpage(bill_str) {
             number+=1
 
         })
-        console.log(votes)
         if (error) throw error;
         var svgContainer = d3.select("svg")
             .attr("width", 880)
@@ -166,7 +164,6 @@ function createpage(bill_str) {
             if (i<2) {
                 ratio = votes[i+1] / (votes[1] + votes[2])
                 ratio_old = votes[i] / (votes[1] + votes[2])
-                console.log(trans)
                 //totalwidth+=votes[i + 1] * width / 800
                 circle.append("rect")
                     .attr("width", ratio*totalwidth)
@@ -206,7 +203,6 @@ function createpage(bill_str) {
                 .attr("fill", function(d) {
                     return stringToColour(d.ParlGroupName); })
                 .on("mouseover",function(d) {
-                    console.log(d)
                      document.getElementById("pics").src="../pictures/"+linksperson[d.Name] +".jpg";
                         document.getElementById("councilorName").innerHTML = d.Name ;
                         document.getElementById("councilorParty").innerHTML = d.ParlGroupName;
@@ -353,8 +349,7 @@ function findperson() {
 
 window.change = function(e){
     d3.select("svg").selectAll("*").remove();
-
-createpage("voting_"+e.value+".csv")
+    createpage("voting_"+e.value+".csv")
 
 
     }
