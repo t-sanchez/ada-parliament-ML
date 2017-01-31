@@ -40,7 +40,7 @@ def load_voting():
     
         # 2. Update the Decision Entries of the parties
 
-    voting_df['Decision'].replace(pd.Series(VOTE_DICT),inplace=True)
+    #voting_df['Decision'].replace(pd.Series(VOTE_DICT),inplace=True)
     
     # 3. Process some supplementary fields
     voting_df.insert(1,'Name', voting_df['FirstName'] + ' ' + voting_df['LastName'])
@@ -87,7 +87,7 @@ def split_df_dict(df, field):
 
     for key in df_dict.keys():
         df_deputee = df.loc[df[field] == key]
-        df_deputee = df_deputee.drop('Name',1)
+        df_deputee = df_deputee.drop(field,1)
         df_dict[key] = df_deputee
     
     return df_dict

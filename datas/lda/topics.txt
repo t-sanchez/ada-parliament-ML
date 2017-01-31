@@ -1,11 +1,11 @@
-0:Juridiction
-1:Santé / Assurances
-2:Sécurité intérieure
-3:Economie / Travail
-4:Budget / Dépenses
-5:Dunno
-6:Politique internationale
-7:Recherche / Education
-8:Environnement / Transports
-9:Fiscalité
-10:Armée
+0:Environnement / Transports
+1:Armée / Défense
+2:Recherche / Education
+3:Economie / Budget
+4:Sécurité Intérieure
+5:Affaires Juridiques
+6:Entreprise / Finance
+7:Politique Internationale
+8:Politique Intérieure
+9:Assurances / Santé
+10:Politique Gouvernementale
