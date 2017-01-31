@@ -36,6 +36,9 @@
             stroke: #fff;
             stroke-width: 1.5px;
         }
+        .nodes text {
+            color: black ;
+        }
         .legend rect {
             fill:white;
             stroke:black;
@@ -43,20 +46,20 @@
         search {
             width: 300px;
         }
-        .col-sm-2 {
-            left : 20px;
-            top : 93px;
-            position: absolute;
-        }
+        nav ul{height:0px; background: gainsboro; border-radius: 5px}
+        nav ul{overflow:hidden; overflow-y:scroll;}
+
     </style>
 
     <div class="container-fluid">
-        <div class="col-sm-14">
+        <div class="col-sm-10">
             <div class="chart-wrapper">
                 <div class="chart-title">
                     Which deputee are close in their way of voting?
                 </div>
                 <div class="chart-stage">
+
+
                     <div id="grid-1-1" align = "center">
                         <input class="awesomplete"
                                data-minchars="1"
@@ -65,7 +68,7 @@
                                onkeypress="handleKeyPress(event)"
                                id="countries"/>
 
-                        <svg width="1080" height="800"></svg>
+                        <svg width="880" height="800"></svg>
                         <script src="https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.min.js"></script>
                         <script src="https://d3js.org/d3.v4.min.js"></script>
                         <script src="../js/votation_viz.js"></script>
@@ -92,7 +95,7 @@
             </div>
 
         </div>
-        <div class="col-sm-2" >
+        <div class="col-sm-2"align = "center" >
             <div class="chart-wrapper">
                 <div class="chart-title">
                    Deputee information:
@@ -102,11 +105,16 @@
                     <div><b>Name: </b> <d id="councilorName"> Name </d></div>
                     <div><b>Party: </b> <d id="councilorParty"> Party </d></div>
                     <img id = "pics"
-                         src = "../pictures/2023.jpg"
+                         src = "../pictures/unknown.jpg"
                          alt = "Deputee picture"
                          width="100"
-                         onclick="vote()"/>
-                    </div>
+                        />
+                    <nav>
+                        <ul id = "links" class = "list-unstyled">
+
+                        </ul>
+                    </nav>
+                </div>
                 </div>
             </div>
         </div>
@@ -126,8 +134,10 @@
 </body>
 
 <script language="javascript" type="text/javascript">
-    function vote() {
-        window.location.assign("../html/votation_viz.html", '_blank');}
+    function unknown() {
+        //console.log("coucou")
+
+        document.getElementById("pics").src="../pictures/unknown.jpg";}
     function subj() {
         window.location.assign("../html/votation_subj.html", '_blank');
     }

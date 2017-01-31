@@ -6,7 +6,8 @@
 
 
 
-var linksperson;
+var linksperson = [];
+var parties= [];
 d3.json("../viz_data/linkspersons.json", function(list) {
     console.log(list)
     linksperson = list;
@@ -18,12 +19,12 @@ d3.json("../viz_data/GroupId.json", function(list) {
 
 });
 
- var selected = null;
+var selected = null;
 
 var svg = d3.select("svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
-    r  = 1;
+r  = 1;
 var radius = 5,
     padding = 1;
 var color = d3.scaleOrdinal(d3.schemeCategory20);
@@ -35,21 +36,21 @@ var simulation = d3.forceSimulation()
     .force("collision", d3.forceCollide().radius(radius+padding).iterations(5).strength(0.5))
     .force("center", d3.forceCenter(width / 2, height / 2));
 
- var input = document.getElementById("countries");
- var awesomplete = new Awesomplete(input, {
-     minChars: 1,
-     maxItems: 5,
-     autoFirst: true
- });
+var input = document.getElementById("countries");
+var awesomplete = new Awesomplete(input, {
+    minChars: 1,
+    maxItems: 5,
+    autoFirst: true
+});
 
 var persons = []
 d3.json("../viz_data/data.json", function(error, graph) {
     if (error) throw error;
-console.log(graph)
- for (var i= 0 ; i<graph.nodes.length;++i){
-    persons.push(graph.nodes[i].id)
- }
- awesomplete.list = persons;
+    console.log(graph)
+    for (var i= 0 ; i<graph.nodes.length;++i){
+        persons.push(graph.nodes[i].id)
+    }
+    awesomplete.list = persons;
 
     var link = svg.append("g")
         .attr("class", "links")
@@ -74,14 +75,16 @@ console.log(graph)
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended))
-            .on("mouseover",function(d) {
+        .on("mouseover",function(d) {
+
+             if (selected ==null){
                 document.getElementById("pics").src="../pictures/"+linksperson[d.id] +".jpg";
                 d3.selectAll(".nodes").style("r", radius);
                 d3.select(this).style("r", 2 * radius)
                 document.getElementById("councilorName").innerHTML = d.id ;
                 document.getElementById("councilorParty").innerHTML = parties[d.group];
-                        link.style('stroke-width', function(l) {
-                        if (l.source == selected || l.target == selected){
+                link.style('stroke-width', function(l) {
+                    if (l.source == selected || l.target == selected){
                         if (d== selected){ return 1}
                         else if ( d === l.target){
                             console.log("source is : "+ l.source.id + "and target is :" + d.id +"with distance : "+ l.value)
@@ -91,39 +94,19 @@ console.log(graph)
                             return 2;}
 
                     }
-                });
-            })
-            .on("mouseout",dephasis)
-            .on("click",function(d) {
-                selected = d;
-
-                link.style('stroke-width', function(l) {
-                    if (d === l.source || d === l.target)
-                        return 2;
-                    else
-                        return 1;
-                });
-                link.style('stroke-opacity', function(l) {
-                    if (d === l.source || d === l.target)
-                        return 10;
-                    else
-                        return 0.05;
-                });
-                link.style('stroke', function(l) {
-                    if (d === l.source || d === l.target)
-                        return color(d.group);
-                    else
-                        return "black";
-                });
-            })
-            .on("dblclick", function(d) {
-                localStorage['parl'] = d.id;
-                window.location.assign("../html/viz_person.html", '_blank');
-            });
+                });}
+        })
+        .on("mouseout",dephasis)
+        .on("click",clicking)
+        .on("dblclick", function(d) {
+            localStorage['parl'] = d.id;
+            window.location.assign("../html/viz_person.html", '_blank');
+            //window.location.assign("../html/viz-person.html", '_blank');
+        });
 
 
     node.append("title")
-        .style("visibility", "hidden")
+        .style("opacity",'0.0')
         .text(function(d) { return d.id; });
 
     var legend = svg.selectAll(".legend")
@@ -132,12 +115,14 @@ console.log(graph)
         .attr("class", "legend")
         .style("font-size","12px")
         .attr("transform", function(d, i) {
-            return "translate("+ -450 +"," + i * 20 + ")"; });
+            return "translate("+ -100 +"," + (i * 20+2) + ")"; });
 
     legend.append("rect")
         .attr("x", width - 18)
         .attr("width", 18)
         .attr("height", 18)
+        .attr("rx", "3px")
+        .attr("ry", "3px")
         .style("fill", color);
 
     legend.append("text")
@@ -156,8 +141,6 @@ console.log(graph)
     simulation.force("link")
         .links(graph.links);
 
-
-
     function ticked() {
         link
             .attr("x1", function(d) {
@@ -168,13 +151,91 @@ console.log(graph)
             .attr("y2", function(d) { return d.target.y; });
 
         node
-            //.each(force())
+        //.each(force())
             .attr("cx", function(d) { return d.x = Math.max(r, Math.min(width - r, d.x)); })
             .attr("cy", function(d) { return d.y= Math.max(r, Math.min(height - r, d.y)); });
 
 
 
     }
+
+
+
+    function clicking(d) {
+        console.log(d)
+        var src = document.getElementById("links");
+
+
+        if (selected == d){
+            selected = null;
+            src.style.height ="0px";}
+        else{
+            selected = d
+            document.getElementById("pics").src="../pictures/"+linksperson[d.id] +".jpg";
+            document.getElementById("councilorName").innerHTML = d.id ;
+            document.getElementById("councilorParty").innerHTML = parties[d.group];
+            src.style.height ="150px"
+        }
+
+
+        while (src.firstChild) {
+            src.removeChild(src.firstChild);
+        }
+        link.style('stroke-width', function(l) {
+            if (selected!=null & (d === l.source || d === l.target) ){
+
+                var li = document.createElement("li");
+                var div = document.createElement("div");
+                var p1 = document.createElement("p");
+                var p2 = document.createElement("p");
+                var img = document.createElement("img");
+                var div2= document.createElement("div");
+                img.width=50
+                if (d==l.source){
+                    img.src = "../pictures/"+linksperson[l.target.id] +".jpg";
+                    img.innerTEXT = l.target.id
+                    p2.innerHTML = " "+l.target.id
+                }
+
+                else {
+                    img.src = "../pictures/" + linksperson[l.source.id] + ".jpg"
+                    img.innerTEXT = l.source.id
+                    p2.innerHTML = " "+l.source.id
+                }
+                img.onclick = function() {
+                    var input  =this.innerTEXT;
+                   new_node = document.getElementById(input)
+                    fakeClick(new_node)
+
+
+                };
+                p1.style.float = "left"
+                div2.style.clear="left"
+                p1.appendChild(img)
+                div.appendChild(p1)
+                div.appendChild(p2)
+                li.appendChild(div)
+                li.appendChild(div2)
+                src.appendChild(li);
+                console.log(src)
+                return 2;}
+            else
+                return 1;
+        });
+        link.style('stroke-opacity', function(l) {
+            if (selected!=null & (d === l.source || d === l.target) )
+                return 10;
+            else
+                return 0.05;
+        });
+        link.style('stroke', function(l) {
+            if (selected!=null & (d === l.source || d === l.target))
+                return color(d.group);
+            else
+                return "black";
+        });
+    }
+
 });
 
 function dragstarted(d) {
@@ -193,32 +254,37 @@ function dragended(d) {
     d.fx = null;
     d.fy = null;
 }
- function emphasis(d) {
-     d3.selectAll(".nodes").style("r", radius);
-     d3.select(d).style("r", 2 * radius)
-         .style("visibility", "visible")
+function emphasis(d) {
+    d3.selectAll(".nodes").style("r", radius);
+    d3.select(d).style("r", 2 * radius)
+        .style("visibility", "visible")
 
-     document.getElementById("councilorName").innerHTML = d.id ;
-     document.getElementById("councilorParty").innerHTML = parties[d.group];
- }
- function dephasis(d) {
-     d3.selectAll(".nodes").style("r", radius);
-     d3.select(this).style("r",radius);
-     document.getElementById("councilorName").innerHTML = "Name" ;
-     document.getElementById("councilorParty").innerHTML = "Party";
+    document.getElementById("councilorName").innerHTML = d.id ;
+    document.getElementById("councilorParty").innerHTML = parties[d.group];
+}
+function dephasis(d) {
+    d3.selectAll(".nodes").style("r", radius);
+    d3.select(this).style("r",radius);
 
- }
+}
 
- function handleKeyPress(e){
-     var key=e.keyCode || e.which;
-     if (key==13){
-         findperson();
-     }
+function handleKeyPress(e){
+    var key=e.keyCode || e.which;
+    if (key==13){
+        findperson();
+    }
 
- }
- function findperson() {
-     var input  =document.getElementById("countries");
-     d3.select("[id='" + input.value + "']")
-         .style("r", 5 * radius);
+}
+function findperson() {
+    var input  =document.getElementById("countries");
+    console.log(input)
+    new_node = document.getElementById(input.value)
+    fakeClick(new_node)
 
- }
+}
+var fakeClick = function(node) {
+
+    var event = document.createEvent('MouseEvents');
+    event.initMouseEvent('click');
+    node.dispatchEvent(event);
+};
