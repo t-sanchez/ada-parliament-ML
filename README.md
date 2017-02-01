@@ -95,6 +95,7 @@ The second main point of view would be to establish a visualisation for how a la
 
 ### Visualization
 Using the d3.js framework, we work on visualising our Data. The details are in the `05-Viz` folder. There also is the pdf version of the poster we presented, which records the aim of each visualization. There are 4 main pages in the website:
+
 1. Network with the deputies, linking those with the most similar voting profile.
 2. Clustering of the laws by topic.
 3. Record of all the votes that a deputy took during his time at the National Council (as well as record of his votes aggregated by Session).
