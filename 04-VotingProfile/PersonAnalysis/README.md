@@ -11,5 +11,5 @@ Splits the Vote and Voting DataFrames by each bill and outputs 2 folders and one
 2. `bill\_link` folder: For each of the IDs of each law, contains all the times it was voted, as well as the ID associated to the vote taken, in order to be able to retrieve the detailed vote.
 3. `bill\_voting` folder: Contains the detailled vote for every law, indexed by the ID that is found in the `bill\_link` folder.
 
-## 4. Dict_to_json_ipynb
+## 3. Dict_to_json.ipynb
 Little file to dump some dicts containing links between the parties name in the files and the real ones, the meaning of the votes.

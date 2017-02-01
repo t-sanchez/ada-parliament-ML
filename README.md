@@ -94,18 +94,28 @@ The idea we want to follow is going from a very general overview of the profile 
 The second main point of view would be to establish a visualisation for how a law was voted throughout time, the different modifications it underwent, the shifts between the chambers, ... This is also done in the same folder.
 
 ### Visualization
-Using the d3.js framework, we work on visualising our Data. The details are in the `05-Viz` folder.
+Using the d3.js framework, we work on visualising our Data. The details are in the `05-Viz` folder. There also is the pdf version of the poster we presented, which records the aim of each visualization. There are 4 main pages in the website:
+1. Network with the deputies, linking those with the most similar voting profile.
+2. Clustering of the laws by topic.
+3. Record of all the votes that a deputy took during his time at the National Council (as well as record of his votes aggregated by Session).
+4. Result of the votes of the parliamentary groups on a law and its modifications.
 
 ## Deliverables
-The final result will take the form of an online website presenting different interactive visualisations of the results we obtain. The website will mostly be developped by [this team](https://github.com/jmuth/parliament-viz.ch) (Joachim Muth, Gael Lederrey and Jonas Racine), and we will provide them with more processed data. 
+The final result will take the form of an online website presenting different interactive visualisations of the results we obtain. This one remains local, and information on how to run it are provided in the `05-Viz` folder. 
+
+We will also highlight another with which we worked : Joachim Muth, Gael Lederrey and Jonas Racine worked on the same data, and developped an interactive webite. All the information regarding them can be found [there](https://github.com/jmuth/parliament-viz.ch).
+
+
 ## Timeplan
 - **November 6th, 2016:** Start of the project -> *done*
 - **November 13th, 2016:** Data scraping and parsing of a first usable dataset -> *done*
-- **December 4th, 2016:** Extraction of the topic of the objects, determining if it is positive or not; machine learning -> *done, machine learning inconclusive*
+- **December 4th, 2016:** Extraction of the topic of the objects, determining if it is positive or not; msachine learning -> *done, machine learning inconclusive*
 - **December 18th, 2016:** Voting profile of each party/deputee -> *done*
 - **Mid-December 2016:** Checkpoint -> *done*
 - **[ADDED]** Visualisation of the voting profile of each deputee, as well as each law
 - **[ADDED]** Interactive and interesting way of visualising the connections between the member of the parliament and the laws (using some of the NLP we previously did).
 - **[ADDED]** Aggregation at a *Session* rate of the votes of one deputee, to get an overall visualisation of how he voted over time. 
-- **January 23st, 2017:** Extension of the database and visualisation of the voting profile of each deputee.
-- **January 31th, 2017:** Final deadline
+- **January 23st, 2017:** Extension of the database and visualisation of the voting profile of each deputee. -> *done* 
+- **[ADDED]** Interactive table recording all the votes of each deputee, with regard to the rest of the parliament as well as his own party.
+- **[ADDED]** Interactive displaying of the votes of the parliamentary group on a given law. Possible to easily scroll through the different modifications that a law went through at the National Council.
+- **January 31th, 2017:** Final deadline -> *FINISHED :)"
