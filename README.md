@@ -118,4 +118,4 @@ We will also highlight another with which we worked : Joachim Muth, Gael Lederre
 - **January 23st, 2017:** Extension of the database and visualisation of the voting profile of each deputee. -> *done* 
 - **[ADDED]** Interactive table recording all the votes of each deputee, with regard to the rest of the parliament as well as his own party.
 - **[ADDED]** Interactive displaying of the votes of the parliamentary group on a given law. Possible to easily scroll through the different modifications that a law went through at the National Council.
-- **January 31th, 2017:** Final deadline -> *FINISHED :)"
+- **January 31th, 2017:** Final deadline -> *FINISHED :)*
